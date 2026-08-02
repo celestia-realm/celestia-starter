@@ -1,0 +1,1 @@
+- **blog** — Full CRUD blog (backend endpoints in `apps/api`, dashboard UI in `apps/web`) over the typed Hono RPC client

@@ -9,7 +9,6 @@ import {
 } from "@workspace/ui/components/card"
 
 import { useSession } from "@/lib/auth-client"
-import { PostsDemo } from "@/components/dashboard/posts-demo"
 
 export default function DashboardPage() {
   const { data: session } = useSession()
@@ -91,8 +90,6 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-
-      <PostsDemo />
     </div>
   )
 }

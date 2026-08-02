@@ -1,0 +1,15 @@
+{
+  "extends": "@workspace/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["../apps/web/*"],
+      "react": ["../apps/web/node_modules/react"],
+      "react-dom": ["../apps/web/node_modules/react-dom"],
+      "next": ["../apps/web/node_modules/next"],
+      "next/*": ["../apps/web/node_modules/next/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "**/snippets"]
+}

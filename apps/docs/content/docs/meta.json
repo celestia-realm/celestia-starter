@@ -1,3 +1,11 @@
 {
-  "pages": ["index", "authentication", "backend", "dashboard", "packages", "components"]
+  "pages": [
+    "index",
+    "authentication",
+    "backend",
+    "dashboard",
+    "packages",
+    "components",
+    "blog"
+  ]
 }

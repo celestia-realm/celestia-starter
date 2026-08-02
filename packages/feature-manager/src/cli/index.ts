@@ -2,12 +2,16 @@
 
 import { addFeature } from "./add.js"
 import { listFeatures } from "./list.js"
+import { removeFeature } from "./remove.js"
 
 const [command, ...args] = process.argv.slice(2)
 
 switch (command) {
   case "add":
     addFeature(args[0])
+    break
+  case "remove":
+    removeFeature(args[0])
     break
   case "list":
     listFeatures()
@@ -18,6 +22,7 @@ feature-manager — plugin system for celestia-starter
 
 Usage:
   feature-manager add <name>    Install a feature from features/
+  feature-manager remove <name> Uninstall an installed feature
   feature-manager list          List available and installed features
 `)
     break

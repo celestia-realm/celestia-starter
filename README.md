@@ -80,6 +80,11 @@ pnpm add-feature auth
 
 - **auth** — Email/password + Google OAuth with Better Auth, Drizzle ORM, and 2FA
 - **dashboard** — Protected dashboard with sidebar navigation, route protection, and user settings
+<!-- feature-manager:features:begin -->
+<!-- feature-manager:features:blog:begin -->
+- **blog** — Full CRUD blog (backend endpoints in `apps/api`, dashboard UI in `apps/web`) over the typed Hono RPC client
+<!-- feature-manager:features:blog:end -->
+<!-- feature-manager:features:end -->
 
 > The canonical setup is the decoupled architecture described in the [Backend API docs](apps/docs/content/docs/backend.mdx): auth and data live in `apps/api`, and the frontend is pure UI. The `features/auth` template predates this separation; see the docs for the current layout.
 
