@@ -1,0 +1,29 @@
+{
+  "name": "@workspace/api",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./app": "./src/app.ts",
+    "./auth": "./src/auth.ts"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "start": "tsx --env-file=.env src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@hono/zod-validator": "^0.7.0",
+    "@workspace/db": "workspace:*",
+    "better-auth": "^1.6.25",
+    "hono": "^4.6.14",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@workspace/typescript-config": "workspace:*",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  }
+}

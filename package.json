@@ -8,6 +8,7 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
+    "docs": "turbo dev --filter=docs",
     "add-feature": "tsx packages/feature-manager/src/cli/index.ts add",
     "list-features": "tsx packages/feature-manager/src/cli/index.ts list"
   },

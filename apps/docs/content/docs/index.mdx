@@ -1,0 +1,49 @@
+---
+title: Celestia Starter
+description: A modern full-stack starter built with Next.js, Hono, Better Auth, and Drizzle ORM
+---
+
+Celestia Starter is a production-ready monorepo template with a decoupled architecture: a Hono backend that owns the data and auth, and a Next.js frontend that is pure UI.
+
+## Tech Stack
+
+- **Next.js 16** — Frontend (pure UI), App Router
+- **Hono** — Standalone backend API (owns DB + auth + business logic)
+- **Better Auth** — Email/password + OAuth authentication (runs on the backend)
+- **Drizzle ORM** — Type-safe PostgreSQL queries and migrations
+- **Hono RPC** — End-to-end typed API calls from frontend to backend
+- **Tailwind CSS + shadcn/ui** — Utility-first styling with accessible components
+- **Turborepo + pnpm** — Fast monorepo builds and workspace management
+
+## Project Structure
+
+```
+celestia-starter/
+├── apps/
+│   ├── web/          # Next.js frontend (pure UI, no database access)
+│   ├── api/          # Hono backend (auth + data + business logic)
+│   └── docs/         # This documentation site (Fumadocs)
+├── packages/
+│   ├── db/           # Drizzle schema + client (backend-only)
+│   ├── ui/           # Shared shadcn/ui component library
+│   ├── eslint-config/
+│   ├── typescript-config/
+│   └── feature-manager/  # CLI for installing features
+└── features/         # Installable feature modules
+```
+
+## Getting Started
+
+```bash
+pnpm install
+pnpm --filter @workspace/db db:push   # create the database schema
+pnpm dev                               # starts web + api + docs
+```
+
+## Features
+
+<Cards>
+  <Card title="Authentication" href="/docs/authentication" description="Email/password and Google OAuth with Better Auth" />
+  <Card title="Backend API" href="/docs/backend" description="Standalone Hono backend with Drizzle, auth, and typed RPC" />
+  <Card title="Dashboard" href="/docs/dashboard" description="Protected dashboard with sidebar, route protection, and settings" />
+</Cards>

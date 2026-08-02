@@ -100,10 +100,24 @@ export const twoFactor = pgTable(
   ],
 );
 
+export const posts = pgTable(
+  "posts",
+  {
+    id: text("id").primaryKey(),
+    title: text("title").notNull(),
+    authorId: text("author_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [index("posts_authorId_idx").on(table.authorId)],
+);
+
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
   twoFactors: many(twoFactor),
+  posts: many(posts),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -123,6 +137,13 @@ export const accountRelations = relations(account, ({ one }) => ({
 export const twoFactorRelations = relations(twoFactor, ({ one }) => ({
   user: one(user, {
     fields: [twoFactor.userId],
+    references: [user.id],
+  }),
+}));
+
+export const postsRelations = relations(posts, ({ one }) => ({
+  author: one(user, {
+    fields: [posts.authorId],
     references: [user.id],
   }),
 }));

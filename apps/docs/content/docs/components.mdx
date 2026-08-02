@@ -1,0 +1,182 @@
+---
+title: Components
+description: Reusable UI components from the @workspace/ui package, rendered live
+---
+
+All components live in `packages/ui/src/components` and are imported via the `@workspace/ui` package alias. Every component is built on Base UI primitives, styled with Tailwind CSS, and supports the `className` prop for overrides.
+
+## Installation
+
+The `@workspace/ui` package is already a workspace dependency. To add a new shadcn/ui component to the shared library:
+
+```bash
+pnpm dlx shadcn@latest add button -c apps/web
+```
+
+## Button
+
+An interactive button with multiple variants and sizes, built on the Base UI `Button` primitive.
+
+<ButtonPreview />
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+
+<Button>Default</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="link">Link</Button>
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+<Button disabled>Disabled</Button>
+```
+
+| Prop | Type | Default |
+|------|------|---------|
+| `variant` | `default \| secondary \| outline \| ghost \| destructive \| link` | `default` |
+| `size` | `default \| xs \| sm \| lg \| icon \| icon-xs \| icon-sm \| icon-lg` | `default` |
+
+## Card
+
+A composable container with header, content, and footer regions.
+
+<CardPreview />
+
+```tsx
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@workspace/ui/components/card"
+
+<Card>
+  <CardHeader>
+    <CardTitle>Create project</CardTitle>
+    <CardDescription>Deploy your new project in one-click.</CardDescription>
+    <CardAction>{/* optional action button */}</CardAction>
+  </CardHeader>
+  <CardContent>{/* body content */}</CardContent>
+  <CardFooter>{/* footer actions */}</CardFooter>
+</Card>
+```
+
+| Component | Purpose |
+|-----------|---------|
+| `Card` | Root container (accepts `size="default" \| "sm"`) |
+| `CardHeader` | Title/description region |
+| `CardTitle` | Heading text |
+| `CardDescription` | Supporting text |
+| `CardAction` | Top-right action slot |
+| `CardContent` | Body region |
+| `CardFooter` | Bottom action region |
+
+## Input
+
+A text input built on the Base UI `Input` primitive.
+
+<InputPreview />
+
+```tsx
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
+
+<Label htmlFor="email">Email</Label>
+<Input id="email" type="email" placeholder="you@example.com" />
+<Input disabled placeholder="Unavailable" />
+```
+
+## Label
+
+An accessible form label.
+
+<LabelPreview />
+
+```tsx
+import { Label } from "@workspace/ui/components/label"
+
+<Label htmlFor="terms">Accept terms and conditions</Label>
+```
+
+## Menu
+
+A dropdown menu built on the Base UI `Menu` compound component. Supports items, sub-menus, checkbox items, radio groups, groups, separators, and keyboard shortcuts.
+
+<MenuPreview />
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+import {
+  Menu,
+  MenuCheckboxItem,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuPopup,
+  MenuPortal,
+  MenuPositioner,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuSub,
+  MenuSubTrigger,
+  MenuTrigger,
+} from "@workspace/ui/components/menu"
+
+<Menu>
+  <MenuTrigger render={<Button variant="outline" />}>Open Menu</MenuTrigger>
+  <MenuPortal>
+    <MenuPositioner sideOffset={8} align="start">
+      <MenuPopup>
+        <MenuGroup>
+          <MenuGroupLabel>Actions</MenuGroupLabel>
+          <MenuItem>
+            New Tab
+            <MenuShortcut>⌘T</MenuShortcut>
+          </MenuItem>
+          <MenuSub>
+            <MenuSubTrigger>Share</MenuSubTrigger>
+            <MenuPortal>
+              <MenuPositioner sideOffset={4}>
+                <MenuPopup>
+                  <MenuItem>Copy Link</MenuItem>
+                </MenuPopup>
+              </MenuPositioner>
+            </MenuPortal>
+          </MenuSub>
+        </MenuGroup>
+        <MenuSeparator />
+        <MenuCheckboxItem checked={checked} onCheckedChange={setChecked}>
+          Status Bar
+        </MenuCheckboxItem>
+        <MenuRadioGroup value={panel} onValueChange={setPanel}>
+          <MenuRadioItem value="top">Panel Top</MenuRadioItem>
+        </MenuRadioGroup>
+        <MenuSeparator />
+        <MenuItem variant="destructive">Delete</MenuItem>
+      </MenuPopup>
+    </MenuPositioner>
+  </MenuPortal>
+</Menu>
+```
+
+| Component | Purpose |
+|-----------|---------|
+| `Menu` | Root — manages open/close state |
+| `MenuTrigger` | Toggle button (use `render` to customize the element) |
+| `MenuPortal` | Renders the popup into a portal |
+| `MenuPositioner` | Positions the popup (`sideOffset`, `align`, `side`) |
+| `MenuPopup` | The visible menu container |
+| `MenuItem` | An action item (`variant="destructive"`, `inset`) |
+| `MenuCheckboxItem` | Toggleable item (`checked`, `onCheckedChange`) |
+| `MenuRadioGroup` / `MenuRadioItem` | Single-select group (`value`, `onValueChange`) |
+| `MenuSub` / `MenuSubTrigger` | Nested sub-menu |
+| `MenuGroup` / `MenuGroupLabel` | Grouping with a label |
+| `MenuSeparator` | Visual divider |
+| `MenuShortcut` | Keyboard hint aligned to the right |

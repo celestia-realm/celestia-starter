@@ -1,0 +1,117 @@
+---
+title: Packages
+description: Shared workspace packages for UI components, linting, TypeScript config, and feature management
+---
+
+The `packages/` directory contains private workspace packages consumed by apps via pnpm's `workspace:*` protocol. Each package owns a single concern and can be versioned or replaced in isolation.
+
+## @workspace/ui
+
+A shadcn-based React component library styled with Tailwind CSS and Base UI.
+
+**Exports:**
+
+| Import path | Resolves to |
+|-------------|-------------|
+| `@workspace/ui/globals.css` | Global styles and CSS variables |
+| `@workspace/ui/components/*` | UI components (button, card, input, label) |
+| `@workspace/ui/hooks/*` | Shared React hooks |
+| `@workspace/ui/lib/*` | Utilities (`cn` helper) |
+
+**Usage:**
+
+```tsx
+import { Button } from "@workspace/ui/components/button"
+import { cn } from "@workspace/ui/lib/utils"
+```
+
+**Key dependencies:** `@base-ui/react`, `class-variance-authority`, `tailwind-merge`, `next-themes`, `@phosphor-icons/react`
+
+---
+
+## @workspace/eslint-config
+
+Shared ESLint flat-config presets for consistent linting across the monorepo.
+
+**Exports:**
+
+| Import path | Purpose |
+|-------------|---------|
+| `@workspace/eslint-config/base` | Base JS/TS rules (strict, turbo, prettier compat) |
+| `@workspace/eslint-config/next-js` | Next.js-specific rules (adds `@next/eslint-plugin-next`) |
+| `@workspace/eslint-config/react-internal` | React library rules (hooks, jsx) |
+
+**Usage in a consumer `eslint.config.js`:**
+
+```js
+import { config } from "@workspace/eslint-config/next-js"
+
+export default config
+```
+
+---
+
+## @workspace/typescript-config
+
+Reusable `tsconfig` profiles that all workspace projects extend.
+
+| File | Use case |
+|------|----------|
+| `base.json` | Default — strict, ES2022, NodeNext resolution |
+| `nextjs.json` | Next.js apps — adds JSX, bundler resolution, plugins |
+| `react-library.json` | React component libraries — JSX + DOM libs |
+
+**Usage in a consumer `tsconfig.json`:**
+
+```json
+{
+  "extends": "@workspace/typescript-config/nextjs.json"
+}
+```
+
+---
+
+## @workspace/feature-manager
+
+A CLI and runtime registry that discovers, installs, and tracks features defined by `feature.json` manifests under the project's `features/` directory.
+
+**CLI commands (via root scripts):**
+
+```bash
+pnpm add-feature <name>    # Install a feature into apps/web
+pnpm list-features         # List available and installed features
+```
+
+**How `add` works:**
+
+1. Reads `features/<name>/feature.json`
+2. Copies declared files into `apps/web/`
+3. Installs `dependencies` and `devDependencies`
+4. Appends required env vars to `apps/web/.env`
+5. Runs `postInstall` commands (e.g. `drizzle-kit push`)
+6. Records the feature in the root `features.json` tracker
+
+**Feature manifest schema (`feature.json`):**
+
+```json
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "Email/password + OAuth authentication",
+  "dependencies": { "better-auth": "^1.6.25" },
+  "devDependencies": { "drizzle-kit": "^0.31.10" },
+  "env": ["DATABASE_URL=postgresql://..."],
+  "requires": [],
+  "files": { "lib/auth.ts": "lib/auth.ts" },
+  "postInstall": ["pnpm --filter web exec drizzle-kit push"],
+  "notes": "Optional post-install instructions"
+}
+```
+
+**Programmatic exports:**
+
+| Import path | Purpose |
+|-------------|---------|
+| `@workspace/feature-manager` | Main entry (re-exports) |
+| `@workspace/feature-manager/types` | `Feature`, `FeatureManifest`, `FeatureTracker` types |
+| `@workspace/feature-manager/registry` | Runtime feature registry |

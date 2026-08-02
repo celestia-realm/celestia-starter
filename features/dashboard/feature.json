@@ -1,0 +1,19 @@
+{
+  "name": "dashboard",
+  "version": "2.0.0",
+  "description": "Protected dashboard (client-side) with sidebar navigation, proxy-based route protection, user settings, and a typed RPC data-fetching example",
+  "requires": ["auth"],
+  "files": {
+    "proxy.ts": "proxy.ts",
+    "app/(dashboard)/layout.tsx": "app/(dashboard)/layout.tsx",
+    "app/(dashboard)/dashboard/page.tsx": "app/(dashboard)/dashboard/page.tsx",
+    "app/(dashboard)/dashboard/settings/page.tsx": "app/(dashboard)/dashboard/settings/page.tsx",
+    "components/dashboard/sidebar.tsx": "components/dashboard/sidebar.tsx",
+    "components/dashboard/user-nav.tsx": "components/dashboard/user-nav.tsx",
+    "components/dashboard/profile-form.tsx": "components/dashboard/profile-form.tsx",
+    "components/dashboard/posts-demo.tsx": "components/dashboard/posts-demo.tsx",
+    "app/(auth)/sign-in/page.tsx": "app/(auth)/sign-in/page.tsx",
+    "app/(auth)/sign-up/page.tsx": "app/(auth)/sign-up/page.tsx"
+  },
+  "notes": "This dashboard is pure UI: it reads the session with useSession() and fetches data through the typed Hono RPC client (@/lib/api-client). It assumes the separated backend (apps/api) and @workspace/db already exist, and that apps/web/lib/api-client.ts and the /api proxy in next.config.ts are in place. It also updates the sign-in/sign-up pages to respect the callbackURL query param."
+}
