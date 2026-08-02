@@ -1,0 +1,120 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { GoogleLogo } from "@phosphor-icons/react"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
+
+import { signIn } from "@/lib/auth-client"
+
+export default function SignInPage() {
+  const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError(null)
+    setLoading(true)
+
+    const { error } = await signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    })
+
+    if (error) {
+      setError(error.message ?? "Something went wrong")
+      setLoading(false)
+    } else {
+      router.push("/")
+    }
+  }
+
+  const handleGoogleSignIn = async () => {
+    await signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    })
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-2 text-center">
+        <h1 className="text-lg font-semibold tracking-tight">Sign in</h1>
+        <p className="text-sm text-muted-foreground">
+          Enter your credentials to access your account
+        </p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="password">Password</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        {error && (
+          <p className="text-xs text-destructive">{error}</p>
+        )}
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="h-8 w-full text-xs"
+        >
+          {loading ? "Signing in..." : "Sign in"}
+        </Button>
+      </form>
+
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" />
+        </div>
+        <div className="relative flex justify-center text-xs uppercase">
+          <span className="bg-background px-2 text-muted-foreground">
+            Or continue with
+          </span>
+        </div>
+      </div>
+
+      <Button
+        variant="outline"
+        className="h-8 w-full text-xs"
+        onClick={handleGoogleSignIn}
+      >
+        <GoogleLogo className="size-4" />
+        Google
+      </Button>
+
+      <p className="text-center text-xs text-muted-foreground">
+        Don&apos;t have an account?{" "}
+        <Link href="/sign-up" className="font-medium text-foreground underline-offset-4 hover:underline">
+          Sign up
+        </Link>
+      </p>
+    </div>
+  )
+}
