@@ -1,0 +1,48 @@
+---
+title: CLI
+description: Scaffold a new Celestia project interactively with npx celestia-starter
+---
+
+The `celestia-starter` CLI creates a new project from the template, asks which features you need, and wires everything up so you can run `pnpm dev` immediately.
+
+## Quick start
+
+```bash
+npx celestia-starter my-app
+```
+
+The installer will:
+
+1. Ask which features you want (`auth`, `dashboard`, `blog`) — required features are resolved automatically
+2. Clone the template and run `pnpm install`
+3. Add/remove features through the feature manager (`features.json` stays in sync)
+4. Write `apps/api/.env` and `apps/web/.env`, including a generated `BETTER_AUTH_SECRET`
+5. Optionally push the database schema (`db:push`) and initialize git
+
+## Non-interactive usage
+
+```bash
+npx celestia-starter my-app --features auth,dashboard
+```
+
+| Flag                 | Description                                                                    |
+| -------------------- | ------------------------------------------------------------------------------ |
+| `--features <a,b>`   | Comma-separated features to install. Dependencies (`requires`) are added automatically. |
+| `--repo <url\|path>` | Template repository to clone. Also accepts a local git path for testing.        |
+| `-h`, `--help`       | Show help.                                                                      |
+
+## Requirements
+
+- Node.js ≥ 20, `pnpm`, and `git` on your PATH
+- A running PostgreSQL if you let the installer push the schema
+
+## Publishing the CLI
+
+The CLI lives in `packages/cli` and is published as the `celestia-starter` npm package (that is what makes `npx celestia-starter` work):
+
+```bash
+cd packages/cli
+npm publish
+```
+
+Before publishing, set `DEFAULT_REPO` in `packages/cli/src/index.js` to the template's public git URL. To try the CLI from this repository without publishing, run `pnpm scaffold`.

@@ -1,0 +1,30 @@
+{
+  "name": "celestia-starter",
+  "version": "0.0.1",
+  "description": "Interactive CLI to scaffold a celestia-starter monorepo with only the features you need",
+  "type": "module",
+  "bin": {
+    "celestia-starter": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "starter",
+    "template",
+    "monorepo",
+    "nextjs",
+    "hono",
+    "better-auth",
+    "drizzle"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

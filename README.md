@@ -41,6 +41,14 @@ pnpm dev                               # starts web + api + docs
 
 This starts the frontend at `http://localhost:3000` and the API at `http://localhost:4000`. The frontend proxies every `/api/*` request to the backend (see `apps/web/next.config.ts`).
 
+## Create a New Project
+
+```bash
+npx celestia-starter my-app
+```
+
+Interactive installer: pick the features you need (auth, dashboard, blog), installs dependencies, writes `.env` files, optionally pushes the DB schema, and initializes git. See the [CLI docs](apps/docs/content/docs/cli.mdx). To run the same CLI from this repository, use `pnpm scaffold`.
+
 ## Scripts
 
 | Command | Description |
@@ -51,6 +59,7 @@ This starts the frontend at `http://localhost:3000` and the API at `http://local
 | `pnpm format` | Format with Prettier |
 | `pnpm typecheck` | Type-check all packages |
 | `pnpm docs` | Start the docs site |
+| `pnpm scaffold` | Run the scaffolding CLI from this repo |
 | `pnpm add-feature <name>` | Install a feature into `apps/web` |
 | `pnpm list-features` | List available and installed features |
 
