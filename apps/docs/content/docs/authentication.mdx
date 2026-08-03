@@ -53,6 +53,9 @@ The auth instance lives in `apps/api/src/auth.ts`:
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
 import { twoFactor } from "better-auth/plugins"
+// feature-manager:auth-imports:begin
+// feature-manager:auth-imports:end
+
 import { db } from "@workspace/db"
 
 export const auth = betterAuth({
@@ -64,10 +67,16 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
-  plugins: [twoFactor({ issuer: "Celestia" })],
+  plugins: [
+    twoFactor({ issuer: "Celestia" }),
+    // feature-manager:auth-plugins:begin
+    // feature-manager:auth-plugins:end
+  ],
   trustedOrigins: ["http://localhost:3000"],
 })
 ```
+
+> **Extension points:** the `auth-imports` / `auth-plugins` regions let installable features add Better Auth server plugins without overwriting this file. The client counterpart (`apps/web/lib/auth-client.ts`) exposes `client-imports` / `client-plugins`, and extra `user` columns can be contributed through the `user-fields` region of `packages/db/src/schema.ts`. See [Packages](/docs/packages) for the full marker catalog.
 
 It is mounted as a catch-all in `apps/api/src/app.ts`:
 

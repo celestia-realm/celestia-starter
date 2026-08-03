@@ -20,6 +20,8 @@ export const user = pgTable("user", {
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
   twoFactorEnabled: boolean("two_factor_enabled").default(false),
+  // feature-manager:user-fields:begin
+  // feature-manager:user-fields:end
 });
 
 export const session = pgTable(
