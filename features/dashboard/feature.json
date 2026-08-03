@@ -1,18 +1,18 @@
 {
   "name": "dashboard",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Protected dashboard (client-side) with sidebar navigation, proxy-based route protection, user settings, and a typed RPC data-fetching example",
   "requires": ["auth"],
-  "files": {
-    "proxy.ts": "proxy.ts",
-    "app/(dashboard)/layout.tsx": "app/(dashboard)/layout.tsx",
-    "app/(dashboard)/dashboard/page.tsx": "app/(dashboard)/dashboard/page.tsx",
-    "app/(dashboard)/dashboard/settings/page.tsx": "app/(dashboard)/dashboard/settings/page.tsx",
-    "components/dashboard/sidebar.tsx": "components/dashboard/sidebar.tsx",
-    "components/dashboard/user-nav.tsx": "components/dashboard/user-nav.tsx",
-    "components/dashboard/profile-form.tsx": "components/dashboard/profile-form.tsx",
-    "app/(auth)/sign-in/page.tsx": "app/(auth)/sign-in/page.tsx",
-    "app/(auth)/sign-up/page.tsx": "app/(auth)/sign-up/page.tsx"
-  },
-  "notes": "This dashboard is pure UI: it reads the session with useSession() and fetches data through the typed Hono RPC client (@/lib/api-client). It assumes the separated backend (apps/api) and @workspace/db already exist, and that apps/web/lib/api-client.ts and the /api proxy in next.config.ts are in place. It also updates the sign-in/sign-up pages to respect the callbackURL query param."
+  "copies": [
+    { "from": "web/proxy.ts", "to": "apps/web/proxy.ts" },
+    { "from": "web/app/(dashboard)/layout.tsx", "to": "apps/web/app/(dashboard)/layout.tsx" },
+    { "from": "web/app/(dashboard)/dashboard/page.tsx", "to": "apps/web/app/(dashboard)/dashboard/page.tsx" },
+    { "from": "web/app/(dashboard)/dashboard/settings/page.tsx", "to": "apps/web/app/(dashboard)/dashboard/settings/page.tsx" },
+    { "from": "web/components/dashboard/sidebar.tsx", "to": "apps/web/components/dashboard/sidebar.tsx" },
+    { "from": "web/components/dashboard/user-nav.tsx", "to": "apps/web/components/dashboard/user-nav.tsx" },
+    { "from": "web/components/dashboard/profile-form.tsx", "to": "apps/web/components/dashboard/profile-form.tsx" },
+    { "from": "web/app/(auth)/sign-in/page.tsx", "to": "apps/web/app/(auth)/sign-in/page.tsx" },
+    { "from": "web/app/(auth)/sign-up/page.tsx", "to": "apps/web/app/(auth)/sign-up/page.tsx" }
+  ],
+  "notes": "Pure frontend feature. Reads the session with useSession() and fetches data through the typed Hono RPC client (@/lib/api-client). Assumes the separated backend (apps/api) and @workspace/db already exist, and that apps/web/lib/api-client.ts and the /api proxy in next.config.ts are in place."
 }

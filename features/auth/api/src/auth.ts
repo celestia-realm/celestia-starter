@@ -1,9 +1,8 @@
 import { betterAuth } from "better-auth"
 import { drizzleAdapter } from "better-auth/adapters/drizzle"
-import { nextCookies } from "better-auth/next-js"
 import { twoFactor } from "better-auth/plugins"
 
-import { db } from "@/lib/db"
+import { db } from "@workspace/db"
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: "pg" }),
@@ -20,8 +19,9 @@ export const auth = betterAuth({
     twoFactor({
       issuer: "Celestia",
     }),
-    nextCookies(),
   ],
+  // The browser reaches auth through the frontend proxy (http://localhost:3000).
+  trustedOrigins: ["http://localhost:3000"],
 })
 
 export type Session = typeof auth.$Infer.Session

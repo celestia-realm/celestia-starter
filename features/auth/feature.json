@@ -1,32 +1,37 @@
 {
   "name": "auth",
-  "version": "1.0.0",
-  "description": "Email/password + OAuth authentication with Better Auth and Drizzle ORM",
+  "version": "2.0.0",
+  "description": "Email/password + OAuth authentication with Better Auth — server in apps/api (Hono), client in apps/web (React)",
+  "requires": [],
+  "copies": [
+    { "from": "api/src/auth.ts", "to": "apps/api/src/auth.ts" },
+    { "from": "web/lib/auth-client.ts", "to": "apps/web/lib/auth-client.ts" }
+  ],
   "dependencies": {
-    "better-auth": "^1.6.25",
-    "drizzle-orm": "^0.45.2",
-    "pg": "^8.22.0"
+    "apps/api": {
+      "better-auth": "^1.6.25",
+      "drizzle-orm": "^0.45.2"
+    },
+    "apps/web": {
+      "better-auth": "^1.6.25"
+    }
   },
   "devDependencies": {
-    "drizzle-kit": "^0.31.10",
-    "@types/pg": "^8.20.3"
+    "apps/api": {
+      "drizzle-kit": "^0.31.10"
+    }
   },
-  "env": [
-    "BETTER_AUTH_URL=http://localhost:3000",
-    "BETTER_AUTH_SECRET=<generate with: openssl rand -base64 32>",
-    "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/celestia",
-    "GOOGLE_CLIENT_ID=your-google-client-id",
-    "GOOGLE_CLIENT_SECRET=your-google-client-secret"
-  ],
-  "requires": [],
-  "files": {
-    "lib/auth.ts": "lib/auth.ts",
-    "lib/auth-client.ts": "lib/auth-client.ts",
-    "lib/db.ts": "lib/db.ts",
-    "app/api/auth/[...all]/route.ts": "app/api/auth/[...all]/route.ts"
+  "env": {
+    "apps/api": [
+      "BETTER_AUTH_URL=http://localhost:3000",
+      "BETTER_AUTH_SECRET=<generate with: openssl rand -base64 32>",
+      "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/celestia",
+      "GOOGLE_CLIENT_ID=your-google-client-id",
+      "GOOGLE_CLIENT_SECRET=your-google-client-secret"
+    ]
   },
   "postInstall": [
-    "pnpm --filter web exec drizzle-kit push"
+    "pnpm --filter @workspace/db db:push"
   ],
-  "notes": "After install, generate auth schema: pnpm --filter web exec @better-auth/cli generate --output db/auth-schema.ts"
+  "notes": "Auth server runs in apps/api (Hono). The web app proxies /api/auth/* to the backend. Frontend only imports the auth client (better-auth/react)."
 }
