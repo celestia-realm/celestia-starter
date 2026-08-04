@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { GoogleLogo } from "@phosphor-icons/react"
@@ -10,7 +10,7 @@ import { Label } from "@workspace/ui/components/label"
 
 import { signIn } from "@/lib/auth-client"
 
-export default function SignInPage() {
+function SignInForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const callbackURL = searchParams.get("callbackURL") ?? "/dashboard"
@@ -118,5 +118,13 @@ export default function SignInPage() {
         </Link>
       </p>
     </div>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense>
+      <SignInForm />
+    </Suspense>
   )
 }
