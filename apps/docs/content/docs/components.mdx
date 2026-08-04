@@ -13,6 +13,88 @@ The `@workspace/ui` package is already a workspace dependency. To add a new shad
 pnpm dlx shadcn@latest add button -c apps/web
 ```
 
+## Colors
+
+The design system uses two layers of color tokens: Celestia landing tokens (forced dark theme) and shadcn semantic tokens (light/dark theme support).
+
+### Celestia Landing TOKENS
+
+These tokens are always dark and used exclusively on the landing page. They're defined in `packages/ui/src/styles/globals.css`.
+
+| Token | Utility Class | Role | Value | Hex Approximation |
+|-------|---------------|------|-------|-------------------|
+| `--bg` | `bg-bg` | Page background | `hsl(0 0% 4%)` | `#0a0a0a` |
+| `--surface` | `bg-surface` | Cards, raised panels | `hsl(0 0% 8%)` | `#141414` |
+| `--text` | `text-text-primary` | Headings, primary copy | `hsl(0 0% 96%)` | `#f5f5f5` |
+| (literal) | `text-fog` | Secondary/muted copy | `hsl(0 0% 53%)` | `#878787` |
+| `--stroke` | `border-stroke` | Borders, dividers | `hsl(0 0% 12%)` | `#1f1f1f` |
+
+### Brand Accent
+
+The brand uses a blue gradient applied via the `.accent-gradient` class or literal hex values:
+
+- **Start**: `#89aacc` (lighter blue)
+- **End**: `#4e85bf` (deeper blue)
+- **Gradient**: `linear-gradient(90deg, #89aacc 0%, #4e85bf 100%)`
+
+### shadcn SEMANTIC TOKENS
+
+These tokens power the app-shell components (dashboard, forms, dialogs) and support both light and dark themes via the `.dark` class.
+
+#### Light Theme (`:root`)
+
+| Token | Utility Class | Role | Value |
+|-------|---------------|------|-------|
+| `--background` | `bg-background` | Page background | `oklch(1 0 0)` (white) |
+| `--foreground` | `text-foreground` | Primary text | `oklch(0.145 0 0)` (near-black) |
+| `--card` | `bg-card` | Card backgrounds | `oklch(1 0 0)` (white) |
+| `--card-foreground` | `text-card-foreground` | Card text | `oklch(0.145 0 0)` (near-black) |
+| `--primary` | `bg-primary` | Primary buttons | `oklch(0.205 0 0)` (dark gray) |
+| `--primary-foreground` | `text-primary-foreground` | Primary button text | `oklch(0.985 0 0)` (white) |
+| `--secondary` | `bg-secondary` | Secondary buttons | `oklch(0.97 0 0)` (light gray) |
+| `--secondary-foreground` | `text-secondary-foreground` | Secondary button text | `oklch(0.205 0 0)` (dark gray) |
+| `--muted` | `bg-muted` | Muted backgrounds | `oklch(0.97 0 0)` (light gray) |
+| `--muted-foreground` | `text-muted-foreground` | Muted text | `oklch(0.556 0 0)` (mid-gray) |
+| `--accent` | `bg-accent` | Accent backgrounds | `oklch(0.97 0 0)` (light gray) |
+| `--accent-foreground` | `text-accent-foreground` | Accent text | `oklch(0.205 0 0)` (dark gray) |
+| `--destructive` | `bg-destructive` | Error states | `oklch(0.577 0.245 27.325)` (red) |
+| `--border` | `border-border` | Borders | `oklch(0.922 0 0)` (light gray) |
+| `--input` | `border-input` | Input borders | `oklch(0.922 0 0)` (light gray) |
+| `--ring` | `ring-ring` | Focus rings | `oklch(0.708 0 0)` (mid-gray) |
+
+#### Dark Theme (`.dark`)
+
+| Token | Utility Class | Role | Value |
+|-------|---------------|------|-------|
+| `--background` | `bg-background` | Page background | `oklch(0.145 0 0)` (dark gray) |
+| `--foreground` | `text-foreground` | Primary text | `oklch(0.985 0 0)` (white) |
+| `--card` | `bg-card` | Card backgrounds | `oklch(0.205 0 0)` (dark gray) |
+| `--card-foreground` | `text-card-foreground` | Card text | `oklch(0.985 0 0)` (white) |
+| `--primary` | `bg-primary` | Primary buttons | `oklch(0.922 0 0)` (light gray) |
+| `--primary-foreground` | `text-primary-foreground` | Primary button text | `oklch(0.205 0 0)` (dark gray) |
+| `--secondary` | `bg-secondary` | Secondary buttons | `oklch(0.269 0 0)` (dark gray) |
+| `--secondary-foreground` | `text-secondary-foreground` | Secondary button text | `oklch(0.985 0 0)` (white) |
+| `--muted` | `bg-muted` | Muted backgrounds | `oklch(0.269 0 0)` (dark gray) |
+| `--muted-foreground` | `text-muted-foreground` | Muted text | `oklch(0.708 0 0)` (mid-gray) |
+| `--accent` | `bg-accent` | Accent backgrounds | `oklch(0.269 0 0)` (dark gray) |
+| `--accent-foreground` | `text-accent-foreground` | Accent text | `oklch(0.985 0 0)` (white) |
+| `--destructive` | `bg-destructive` | Error states | `oklch(0.704 0.191 22.216)` (red) |
+| `--border` | `border-border` | Borders | `oklch(1 0 0 / 10%)` (white with 10% opacity) |
+| `--input` | `border-input` | Input borders | `oklch(1 0 0 / 15%)` (white with 15% opacity) |
+| `--ring` | `ring-ring` | Focus rings | `oklch(0.556 0 0)` (mid-gray) |
+
+### Chart Colors
+
+Charts use a dedicated palette defined by `--chart-1` through `--chart-5` tokens. These are grayscale values that work in both light and dark themes.
+
+| Token | Value |
+|-------|-------|
+| `--chart-1` | `oklch(0.87 0 0)` |
+| `--chart-2` | `oklch(0.556 0 0)` |
+| `--chart-3` | `oklch(0.439 0 0)` |
+| `--chart-4` | `oklch(0.371 0 0)` |
+| `--chart-5` | `oklch(0.269 0 0)` |
+
 ## Accordion
 
 A vertically stacked set of expandable items, built on the Base UI `Accordion` primitive.

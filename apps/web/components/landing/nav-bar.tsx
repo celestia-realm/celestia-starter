@@ -5,10 +5,19 @@ import * as React from "react"
 import { Button } from "@workspace/ui/components/button"
 import { cn } from "@workspace/ui/lib/utils"
 
-const LINKS = [
+const LINKS: {
+  href: string
+  label: string
+  external?: boolean
+}[] = [
   { href: "#stack", label: "Stack" },
   { href: "#architecture", label: "Architecture" },
   { href: "#install", label: "Install" },
+  {
+    href: "https://celestia-realm.github.io/celestia-starter/access",
+    label: "Docs",
+    external: true,
+  },
 ]
 
 const GITHUB_URL = "https://github.com/celestia-realm/celestia-starter"
@@ -36,7 +45,7 @@ export function LogoMark({ className }: Readonly<{ className?: string }>) {
         className,
       )}
     >
-      <span className="grid size-[22px] place-items-center rounded-full bg-bg">
+      <span className="grid size-[22px] place-items-center rounded-full">
         <span className="size-1.5 rounded-full bg-[#89aacc]" />
       </span>
     </span>
@@ -58,7 +67,7 @@ export function NavBar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300 motion-reduce:transition-none",
         scrolled
-          ? "border-b border-stroke bg-bg/80 backdrop-blur-md"
+          ? "border-b border-stroke bg-bg backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -81,6 +90,7 @@ export function NavBar() {
             <Link
               key={link.href}
               href={link.href}
+              {...(link.external && { target: "_blank", rel: "noreferrer" })}
               className="text-sm text-fog transition-colors hover:text-text-primary"
             >
               {link.label}
