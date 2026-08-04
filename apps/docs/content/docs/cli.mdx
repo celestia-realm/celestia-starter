@@ -39,11 +39,11 @@ npx celestia-starter my-app --features auth,dashboard
 
 ## Publishing the CLI
 
-The CLI lives in `packages/cli` and is published as the `celestia-starter` npm package (that is what makes `npx celestia-starter` work):
+The CLI lives in `packages/cli` and is published as the `celestia-starter` npm package (that is what makes `npx celestia-starter` work), alongside `@celestia-project/ui` under the `celestia-project` npm org:
 
 ```bash
 cd packages/cli
 npm publish
 ```
 
-Before publishing, set `DEFAULT_REPO` in `packages/cli/src/index.js` to the template's public git URL. To try the CLI from this repository without publishing, run `pnpm scaffold`.
+`DEFAULT_REPO` in `packages/cli/src/index.js` points at the public template repository — update it if you fork. To try the CLI from this repository without publishing, run `pnpm scaffold`.

@@ -6,8 +6,7 @@ import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "no
 import { join, resolve } from "node:path"
 import readline from "node:readline/promises"
 
-// TODO: set this to the template's public git URL before publishing.
-const DEFAULT_REPO = "https://github.com/celestia/celestia-starter.git"
+const DEFAULT_REPO = "https://github.com/celestia-realm/celestia-starter.git"
 
 const isTTY = Boolean(process.stdin.isTTY && process.stdout.isTTY)
 const useColor = process.stdout.isTTY && !process.env.NO_COLOR
