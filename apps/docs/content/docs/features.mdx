@@ -20,7 +20,7 @@ Use `features/blog/` as the canonical reference implementation.
 | Backend | `apps/api` (Hono, port 4000) | All API routes, auth server, DB access. Secrets env only here. |
 | Frontend | `apps/web` (Next.js, port 3000) | Pure UI. No DB access, no Better Auth server instance, no secrets. |
 | Database | `packages/db` | Drizzle schema + pooled client (`@workspace/db`). Never create local `db.ts`. |
-| Shared UI | `packages/ui` | Reusable shadcn/ui components (`@workspace/ui`). |
+| Shared UI | `packages/ui` | Reusable shadcn/ui components (`@celestia-project/ui`). |
 
 - Backend code must never import from `apps/web`; frontend code must never import server auth or DB directly.
 - API routes live in `apps/api/src/features/<name>/routes.ts`, mounted via the `routes` marker in `apps/api/src/app.ts`. Use the `/api/...` prefix; never collide with the reserved `/api/auth/*` catch-all.

@@ -6,7 +6,7 @@ icon: package
 
 The `packages/` directory contains private workspace packages consumed by apps via pnpm's `workspace:*` protocol. Each package owns a single concern and can be versioned or replaced in isolation.
 
-## @workspace/ui
+## @celestia-project/ui
 
 A shadcn-based React component library styled with Tailwind CSS and Base UI.
 
@@ -14,19 +14,38 @@ A shadcn-based React component library styled with Tailwind CSS and Base UI.
 
 | Import path | Resolves to |
 |-------------|-------------|
-| `@workspace/ui/globals.css` | Global styles and CSS variables |
-| `@workspace/ui/components/*` | UI components (button, card, input, label) |
-| `@workspace/ui/hooks/*` | Shared React hooks |
-| `@workspace/ui/lib/*` | Utilities (`cn` helper) |
+| `@celestia-project/ui` | Barrel export of every component (tree-shaken) |
+| `@celestia-project/ui/globals.css` | Global styles and CSS variables |
+| `@celestia-project/ui/components/*` | UI components (button, card, input, label) |
+| `@celestia-project/ui/hooks/*` | Shared React hooks |
+| `@celestia-project/ui/lib/*` | Utilities (`cn` helper) |
 
 **Usage:**
 
 ```tsx
-import { Button } from "@workspace/ui/components/button"
-import { cn } from "@workspace/ui/lib/utils"
+import { Button } from "@celestia-project/ui"
+import { Button } from "@celestia-project/ui/components/button"
+import { cn } from "@celestia-project/ui/lib/utils"
 ```
 
 **Key dependencies:** `@base-ui/react`, `class-variance-authority`, `tailwind-merge`, `next-themes`, `@phosphor-icons/react`
+
+### Using it outside this monorepo
+
+The package is bundled with [tsup](https://tsup.egoist.dev) into compiled ESM + type declarations (`pnpm build` inside `packages/ui`), so it can be published to npm and installed in any React project:
+
+```bash
+pnpm build --filter @celestia-project/ui   # emits dist/
+npm publish --access public        # from packages/ui
+```
+
+Consumers need Tailwind CSS v4 in their project, because components are styled with utility classes:
+
+```css
+/* consumer's global CSS */
+@import "@celestia-project/ui/globals.css";
+@source "../node_modules/@celestia-project/ui/dist";
+```
 
 ---
 

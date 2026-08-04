@@ -1,7 +1,7 @@
 import * as React from "react"
 import { SpinnerIcon } from "@phosphor-icons/react"
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (

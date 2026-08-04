@@ -1,14 +1,14 @@
 ---
 title: Components
-description: Reusable UI components from the @workspace/ui package, rendered live
+description: Reusable UI components from the @celestia-project/ui package, rendered live
 icon: components
 ---
 
-All components live in `packages/ui/src/components` and are imported via the `@workspace/ui` package alias. Every component is built on Base UI primitives, styled with Tailwind CSS, and supports the `className` prop for overrides. Icons come from `@phosphor-icons/react`.
+All components live in `packages/ui/src/components` and are imported via the `@celestia-project/ui` package alias. Every component is built on Base UI primitives, styled with Tailwind CSS, and supports the `className` prop for overrides. Icons come from `@phosphor-icons/react`.
 
 ## Installation
 
-The `@workspace/ui` package is already a workspace dependency. To add a new shadcn/ui component to the shared library:
+The `@celestia-project/ui` package is already a workspace dependency. To add a new shadcn/ui component to the shared library:
 
 ```bash
 pnpm dlx shadcn@latest add button -c apps/web
@@ -16,11 +16,11 @@ pnpm dlx shadcn@latest add button -c apps/web
 
 ## Colors
 
-The design system uses two layers of color tokens: Celestia landing tokens (forced dark theme) and shadcn semantic tokens (light/dark theme support).
+The design system uses two layers of Celestia color tokens: landing tokens (forced dark theme) and semantic tokens (light/dark theme support).
 
 <ColorsPreview />
 
-### Celestia Landing TOKENS
+### Landing Tokens
 
 These tokens are always dark and used exclusively on the landing page. They're defined in `packages/ui/src/styles/globals.css`.
 
@@ -40,7 +40,7 @@ The brand uses a blue gradient applied via the `.accent-gradient` class or liter
 - **End**: `#4e85bf` (deeper blue)
 - **Gradient**: `linear-gradient(90deg, #89aacc 0%, #4e85bf 100%)`
 
-### shadcn SEMANTIC TOKENS
+### Semantic Tokens
 
 These tokens power the app-shell components (dashboard, forms, dialogs) and support both light and dark themes via the `.dark` class.
 

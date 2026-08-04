@@ -16,7 +16,7 @@ This project uses a **separated architecture**. All new features MUST respect th
 | Backend API | `apps/api` | Hono (port 4000) | Auth server, business logic, CRUD routes, database access |
 | Frontend | `apps/web` | Next.js (port 3000) | Pure UI — pages, components, client-side auth via `better-auth/react` |
 | Shared DB | `packages/db` | — | Drizzle ORM schema + client (`@workspace/db`) |
-| Shared UI | `packages/ui` | — | Reusable shadcn/ui components (`@workspace/ui`) |
+| Shared UI | `packages/ui` | — | Reusable shadcn/ui components (`@celestia-project/ui`) |
 
 ## Rules
 

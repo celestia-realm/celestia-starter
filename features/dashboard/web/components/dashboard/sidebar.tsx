@@ -7,7 +7,7 @@ import { GearSix, House } from "@phosphor-icons/react"
 // feature-manager:imports:begin
 // feature-manager:imports:end
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 import type { Session } from "@/lib/auth-client"
 import { UserNav } from "@/components/dashboard/user-nav"
 

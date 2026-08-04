@@ -1,6 +1,6 @@
 import { Slider as SliderPrimitive } from "@base-ui/react/slider"
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 function Slider({
   className,

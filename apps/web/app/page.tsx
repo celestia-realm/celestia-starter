@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { Button } from "@workspace/ui/components/button"
+import { Button } from "@celestia-project/ui/components/button"
 
 import { CopyCommand } from "@/components/landing/copy-command"
 import { HeroVideo } from "@/components/landing/hero-video"

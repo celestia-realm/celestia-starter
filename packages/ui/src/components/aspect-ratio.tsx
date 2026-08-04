@@ -1,4 +1,4 @@
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 function AspectRatio({
   ratio,

@@ -11,11 +11,11 @@
   },
   "iconLibrary": "phosphor",
   "aliases": {
-    "components": "@workspace/ui/components",
-    "utils": "@workspace/ui/lib/utils",
-    "hooks": "@workspace/ui/hooks",
-    "lib": "@workspace/ui/lib",
-    "ui": "@workspace/ui/components"
+    "components": "@celestia-project/ui/components",
+    "utils": "@celestia-project/ui/lib/utils",
+    "hooks": "@celestia-project/ui/hooks",
+    "lib": "@celestia-project/ui/lib",
+    "ui": "@celestia-project/ui/components"
   },
   "rtl": true,
   "menuColor": "default-translucent",

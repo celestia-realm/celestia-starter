@@ -1,14 +1,16 @@
 {
   "pages": [
+    "---Getting Started---",
     "index",
     "cli",
+    "packages",
+    "features",
+    "components",
+    "---Features---",
     "authentication",
     "backend",
     "dashboard",
-    "packages",
-    "components",
     "blog",
-    "features",
     "access"
   ]
 }

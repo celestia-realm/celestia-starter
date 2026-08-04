@@ -8,8 +8,8 @@ import {
   useMessageScrollerVisibility,
 } from "@shadcn/react/message-scroller"
 
-import { cn } from "@workspace/ui/lib/utils"
-import { Button } from "@workspace/ui/components/button"
+import { cn } from "@celestia-project/ui/lib/utils"
+import { Button } from "@celestia-project/ui/components/button"
 import { ArrowDownIcon } from "@phosphor-icons/react"
 
 function MessageScrollerProvider(

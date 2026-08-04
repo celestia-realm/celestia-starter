@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 /**
  * Scroll-reveal wrapper. Content is fully visible by default; the

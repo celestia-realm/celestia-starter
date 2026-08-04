@@ -10,7 +10,7 @@ const config = {
   // Image optimization is not available with static export on GitHub Pages
   images: { unoptimized: true },
   reactStrictMode: true,
-  transpilePackages: ['@workspace/ui'],
+  transpilePackages: ['@celestia-project/ui'],
 };
 
 export default withMDX(config);

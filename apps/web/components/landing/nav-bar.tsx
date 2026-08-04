@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import * as React from "react"
-import { Button } from "@workspace/ui/components/button"
-import { cn } from "@workspace/ui/lib/utils"
+import { Button } from "@celestia-project/ui/components/button"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 const LINKS: {
   href: string

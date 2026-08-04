@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 function CheckIcon({ className, ...props }: React.ComponentProps<"svg">) {
   return (

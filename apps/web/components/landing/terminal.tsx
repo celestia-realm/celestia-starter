@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 type Line = {
   prompt?: boolean
@@ -79,7 +79,7 @@ export function InstallTerminal({ className }: Readonly<{ className?: string }>)
         <span className="size-2.5 rounded-full bg-stroke" />
         <span className="size-2.5 rounded-full bg-stroke" />
         <span className="ml-3 font-mono text-xs text-fog">
-          celestia — zsh — 80×24
+          celestia — zsh
         </span>
       </div>
 

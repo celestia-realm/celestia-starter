@@ -2,16 +2,16 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Button } from "@workspace/ui/components/button"
+import { Button } from "@celestia-project/ui/components/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@workspace/ui/components/card"
-import { Input } from "@workspace/ui/components/input"
-import { Label } from "@workspace/ui/components/label"
+} from "@celestia-project/ui/components/card"
+import { Input } from "@celestia-project/ui/components/input"
+import { Label } from "@celestia-project/ui/components/label"
 
 import { authClient } from "@/lib/auth-client"
 import type { Session } from "@/lib/auth-client"

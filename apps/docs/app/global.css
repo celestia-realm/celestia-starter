@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
-@import '@workspace/ui/globals.css';
+@import '@celestia-project/ui/globals.css';
 
 html {
   scrollbar-gutter: stable;

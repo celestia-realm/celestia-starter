@@ -5,8 +5,8 @@ import { toast } from 'sonner';
 import { BellIcon, NoteBlankIcon, UserIcon } from '@phosphor-icons/react';
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts';
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@workspace/ui/components/accordion';
-import { Alert, AlertDescription, AlertTitle } from '@workspace/ui/components/alert';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@celestia-project/ui/components/accordion';
+import { Alert, AlertDescription, AlertTitle } from '@celestia-project/ui/components/alert';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,10 +17,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@workspace/ui/components/alert-dialog';
-import { AspectRatio } from '@workspace/ui/components/aspect-ratio';
-import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar';
-import { Badge } from '@workspace/ui/components/badge';
+} from '@celestia-project/ui/components/alert-dialog';
+import { AspectRatio } from '@celestia-project/ui/components/aspect-ratio';
+import { Avatar, AvatarFallback, AvatarImage } from '@celestia-project/ui/components/avatar';
+import { Badge } from '@celestia-project/ui/components/badge';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -28,10 +28,10 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@workspace/ui/components/breadcrumb';
-import { Button } from '@workspace/ui/components/button';
-import { ButtonGroup, ButtonGroupSeparator } from '@workspace/ui/components/button-group';
-import { Calendar } from '@workspace/ui/components/calendar';
+} from '@celestia-project/ui/components/breadcrumb';
+import { Button } from '@celestia-project/ui/components/button';
+import { ButtonGroup, ButtonGroupSeparator } from '@celestia-project/ui/components/button-group';
+import { Calendar } from '@celestia-project/ui/components/calendar';
 import {
   Card,
   CardAction,
@@ -40,12 +40,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@workspace/ui/components/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@workspace/ui/components/carousel';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@workspace/ui/components/chart';
-import { Checkbox } from '@workspace/ui/components/checkbox';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@workspace/ui/components/collapsible';
-import { Combobox, ComboboxContent, ComboboxInput, ComboboxItem, ComboboxList } from '@workspace/ui/components/combobox';
+} from '@celestia-project/ui/components/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@celestia-project/ui/components/carousel';
+import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from '@celestia-project/ui/components/chart';
+import { Checkbox } from '@celestia-project/ui/components/checkbox';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@celestia-project/ui/components/collapsible';
+import { Combobox, ComboboxContent, ComboboxInput, ComboboxItem, ComboboxList } from '@celestia-project/ui/components/combobox';
 import {
   Command,
   CommandEmpty,
@@ -55,7 +55,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from '@workspace/ui/components/command';
+} from '@celestia-project/ui/components/command';
 import {
   ContextMenu,
   ContextMenuContent,
@@ -63,7 +63,7 @@ import {
   ContextMenuSeparator,
   ContextMenuShortcut,
   ContextMenuTrigger,
-} from '@workspace/ui/components/context-menu';
+} from '@celestia-project/ui/components/context-menu';
 import {
   Dialog,
   DialogClose,
@@ -73,7 +73,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@workspace/ui/components/dialog';
+} from '@celestia-project/ui/components/dialog';
 import {
   Drawer,
   DrawerClose,
@@ -83,7 +83,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@workspace/ui/components/drawer';
+} from '@celestia-project/ui/components/drawer';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -91,13 +91,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@workspace/ui/components/dropdown-menu';
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@workspace/ui/components/empty';
-import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@workspace/ui/components/field';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '@workspace/ui/components/hover-card';
-import { Input } from '@workspace/ui/components/input';
-import { InputGroup, InputGroupInput, InputGroupText } from '@workspace/ui/components/input-group';
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@workspace/ui/components/input-otp';
+} from '@celestia-project/ui/components/dropdown-menu';
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@celestia-project/ui/components/empty';
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@celestia-project/ui/components/field';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@celestia-project/ui/components/hover-card';
+import { Input } from '@celestia-project/ui/components/input';
+import { InputGroup, InputGroupInput, InputGroupText } from '@celestia-project/ui/components/input-group';
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@celestia-project/ui/components/input-otp';
 import {
   Item,
   ItemActions,
@@ -106,9 +106,9 @@ import {
   ItemGroup,
   ItemMedia,
   ItemTitle,
-} from '@workspace/ui/components/item';
-import { Kbd, KbdGroup } from '@workspace/ui/components/kbd';
-import { Label } from '@workspace/ui/components/label';
+} from '@celestia-project/ui/components/item';
+import { Kbd, KbdGroup } from '@celestia-project/ui/components/kbd';
+import { Label } from '@celestia-project/ui/components/label';
 import {
   Menu,
   MenuCheckboxItem,
@@ -125,7 +125,7 @@ import {
   MenuSub,
   MenuSubTrigger,
   MenuTrigger,
-} from '@workspace/ui/components/menu';
+} from '@celestia-project/ui/components/menu';
 import {
   Menubar,
   MenubarContent,
@@ -134,8 +134,8 @@ import {
   MenubarSeparator,
   MenubarShortcut,
   MenubarTrigger,
-} from '@workspace/ui/components/menubar';
-import { NativeSelect, NativeSelectOption } from '@workspace/ui/components/native-select';
+} from '@celestia-project/ui/components/menubar';
+import { NativeSelect, NativeSelectOption } from '@celestia-project/ui/components/native-select';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -143,7 +143,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from '@workspace/ui/components/navigation-menu';
+} from '@celestia-project/ui/components/navigation-menu';
 import {
   Pagination,
   PaginationContent,
@@ -152,14 +152,14 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@workspace/ui/components/pagination';
-import { Popover, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from '@workspace/ui/components/popover';
-import { Progress } from '@workspace/ui/components/progress';
-import { RadioGroup, RadioGroupItem } from '@workspace/ui/components/radio-group';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@workspace/ui/components/resizable';
-import { ScrollArea } from '@workspace/ui/components/scroll-area';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@workspace/ui/components/select';
-import { Separator } from '@workspace/ui/components/separator';
+} from '@celestia-project/ui/components/pagination';
+import { Popover, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from '@celestia-project/ui/components/popover';
+import { Progress } from '@celestia-project/ui/components/progress';
+import { RadioGroup, RadioGroupItem } from '@celestia-project/ui/components/radio-group';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@celestia-project/ui/components/resizable';
+import { ScrollArea } from '@celestia-project/ui/components/scroll-area';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@celestia-project/ui/components/select';
+import { Separator } from '@celestia-project/ui/components/separator';
 import {
   Sheet,
   SheetClose,
@@ -169,18 +169,18 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@workspace/ui/components/sheet';
-import { Skeleton } from '@workspace/ui/components/skeleton';
-import { Slider } from '@workspace/ui/components/slider';
-import { Toaster } from '@workspace/ui/components/sonner';
-import { Spinner } from '@workspace/ui/components/spinner';
-import { Switch } from '@workspace/ui/components/switch';
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@workspace/ui/components/table';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@workspace/ui/components/tabs';
-import { Textarea } from '@workspace/ui/components/textarea';
-import { Toggle } from '@workspace/ui/components/toggle';
-import { ToggleGroup, ToggleGroupItem } from '@workspace/ui/components/toggle-group';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@workspace/ui/components/tooltip';
+} from '@celestia-project/ui/components/sheet';
+import { Skeleton } from '@celestia-project/ui/components/skeleton';
+import { Slider } from '@celestia-project/ui/components/slider';
+import { Toaster } from '@celestia-project/ui/components/sonner';
+import { Spinner } from '@celestia-project/ui/components/spinner';
+import { Switch } from '@celestia-project/ui/components/switch';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@celestia-project/ui/components/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@celestia-project/ui/components/tabs';
+import { Textarea } from '@celestia-project/ui/components/textarea';
+import { Toggle } from '@celestia-project/ui/components/toggle';
+import { ToggleGroup, ToggleGroupItem } from '@celestia-project/ui/components/toggle-group';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@celestia-project/ui/components/tooltip';
 
 function PreviewShell({ children }: { children: React.ReactNode }) {
   return (
@@ -445,7 +445,7 @@ export function CollapsiblePreview() {
     <PreviewShell>
       <Collapsible open={open} onOpenChange={setOpen} className="w-80">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-sm font-medium">@workspace/ui starred repositories</span>
+          <span className="text-sm font-medium">@celestia-project/ui starred repositories</span>
           <CollapsibleTrigger render={<Button variant="ghost" size="sm" />}>
             {open ? 'Close' : 'Open'}
           </CollapsibleTrigger>
@@ -453,7 +453,7 @@ export function CollapsiblePreview() {
         <div className="mt-2 rounded-md border px-3 py-2 text-sm">@workspace/db</div>
         <CollapsibleContent>
           <div className="mt-2 flex flex-col gap-2">
-            <div className="rounded-md border px-3 py-2 text-sm">@workspace/ui</div>
+            <div className="rounded-md border px-3 py-2 text-sm">@celestia-project/ui</div>
             <div className="rounded-md border px-3 py-2 text-sm">@workspace/cli</div>
           </div>
         </CollapsibleContent>
@@ -649,14 +649,14 @@ export function HoverCardPreview() {
   return (
     <PreviewShell>
       <HoverCard>
-        <HoverCardTrigger render={<a href="#" />}>@workspace/ui</HoverCardTrigger>
+        <HoverCardTrigger render={<a href="#" />}>@celestia-project/ui</HoverCardTrigger>
         <HoverCardContent>
           <div className="flex gap-3">
             <Avatar>
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
-              <span className="text-sm font-medium">@workspace/ui</span>
+              <span className="text-sm font-medium">@celestia-project/ui</span>
               <p className="text-xs text-muted-foreground">
                 A shared component library built on Base UI and Tailwind CSS.
               </p>
@@ -724,7 +724,7 @@ export function ItemPreview() {
             </Avatar>
           </ItemMedia>
           <ItemContent>
-            <ItemTitle>@workspace/ui</ItemTitle>
+            <ItemTitle>@celestia-project/ui</ItemTitle>
             <ItemDescription>Shared component library</ItemDescription>
           </ItemContent>
           <ItemActions>
@@ -1270,9 +1270,9 @@ export function ColorsPreview() {
   return (
     <PreviewShell>
       <div className="grid w-full max-w-3xl gap-8">
-        {/* Celestia landing tokens */}
+        {/* Landing tokens */}
         <div className="flex flex-col gap-3">
-          <h4 className="text-sm font-semibold">Celestia Landing TOKENS</h4>
+          <h4 className="text-sm font-semibold">Landing Tokens</h4>
           <div className="grid gap-3 rounded-lg bg-[#0a0a0a] p-4 sm:grid-cols-2">
             <ColorSwatch label="bg" className="bg-[#0a0a0a]" value="#0a0a0a" />
             <ColorSwatch label="surface" className="bg-[#141414]" value="#141414" />
@@ -1294,9 +1294,9 @@ export function ColorsPreview() {
           </div>
         </div>
 
-        {/* shadcn semantic tokens */}
+        {/* Semantic tokens */}
         <div className="flex flex-col gap-3">
-          <h4 className="text-sm font-semibold">shadcn SEMANTIC TOKENS</h4>
+          <h4 className="text-sm font-semibold">Semantic Tokens</h4>
           <div className="grid gap-3 rounded-lg border border-fd-border p-4 sm:grid-cols-2">
             <ColorSwatch label="background" className="bg-background" value="oklch(1 0 0)" />
             <ColorSwatch label="foreground" className="bg-foreground" value="oklch(0.145 0 0)" />

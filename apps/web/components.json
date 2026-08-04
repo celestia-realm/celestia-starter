@@ -14,8 +14,8 @@
     "components": "@/components",
     "hooks": "@/hooks",
     "lib": "@/lib",
-    "utils": "@workspace/ui/lib/utils",
-    "ui": "@workspace/ui/components"
+    "utils": "@celestia-project/ui/lib/utils",
+    "ui": "@celestia-project/ui/components"
   },
   "rtl": true,
   "menuColor": "default-translucent",

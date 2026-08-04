@@ -3,7 +3,7 @@
 import * as React from "react"
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu"
 
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@celestia-project/ui/lib/utils"
 import { CaretRightIcon, CheckIcon } from "@phosphor-icons/react"
 
 function ContextMenu({ ...props }: ContextMenuPrimitive.Root.Props) {

@@ -2,8 +2,8 @@
 
 import { Check, Copy } from "@phosphor-icons/react"
 import * as React from "react"
-import { Button } from "@workspace/ui/components/button"
-import { cn } from "@workspace/ui/lib/utils"
+import { Button } from "@celestia-project/ui/components/button"
+import { cn } from "@celestia-project/ui/lib/utils"
 
 /**
  * Copyable install command — the product's real entry point, shown as

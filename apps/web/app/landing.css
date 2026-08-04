@@ -1,7 +1,7 @@
 /*
  * Celestia landing styles.
  * The color tokens (--color-bg, --color-fog, ...) and keyframes live in
- * @workspace/ui globals.css so Tailwind generates the utilities there;
+ * @celestia-project/ui globals.css so Tailwind generates the utilities there;
  * this file carries the plain-CSS extras only.
  */
 

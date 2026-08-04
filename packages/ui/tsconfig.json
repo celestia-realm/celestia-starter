@@ -4,7 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
-      "@workspace/ui/*": ["./src/*"]
+      "@celestia-project/ui/*": ["./src/*"]
     }
   },
   "include": ["."],

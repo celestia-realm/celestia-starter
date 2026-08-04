@@ -4,9 +4,9 @@ import { Suspense, useState } from "react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { GoogleLogo } from "@phosphor-icons/react"
-import { Button } from "@workspace/ui/components/button"
-import { Input } from "@workspace/ui/components/input"
-import { Label } from "@workspace/ui/components/label"
+import { Button } from "@celestia-project/ui/components/button"
+import { Input } from "@celestia-project/ui/components/input"
+import { Label } from "@celestia-project/ui/components/label"
 
 import { signIn } from "@/lib/auth-client"
 

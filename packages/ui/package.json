@@ -1,9 +1,22 @@
 {
-  "name": "@workspace/ui",
-  "version": "0.0.0",
+  "name": "@celestia-project/ui",
+  "version": "0.1.0",
+  "description": "Celestia UI — shadcn-style React component primitives built on Base UI and Tailwind CSS v4",
   "type": "module",
-  "private": true,
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celestia-realm/celestia-starter.git",
+    "directory": "packages/ui"
+  },
   "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit"
@@ -19,9 +32,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "next-themes": "^0.4.6",
-    "react": "19.2.4",
     "react-day-picker": "^10.0.1",
-    "react-dom": "19.2.4",
     "react-resizable-panels": "^4.12.2",
     "recharts": "3.8.0",
     "shadcn": "^4.16.1",
@@ -29,6 +40,10 @@
     "tailwind-merge": "^3.6.0",
     "tw-animate-css": "^1.4.0",
     "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -39,14 +54,30 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
     "tailwindcss": "^4",
+    "tsup": "^8.5.0",
     "typescript": "^5"
   },
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./lib/*": {
+      "types": "./dist/lib/*.d.ts",
+      "import": "./dist/lib/*.js"
+    },
+    "./components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./hooks/*": {
+      "types": "./dist/hooks/*.d.ts",
+      "import": "./dist/hooks/*.js"
+    }
   }
 }
