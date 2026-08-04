@@ -32,6 +32,8 @@ export function Sidebar({ user }: { user: Session["user"] }) {
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
         {navItems.map((item) => {
+          // feature-manager:nav-visibility:begin
+          // feature-manager:nav-visibility:end
           const isActive =
             item.href === "/dashboard"
               ? pathname === "/dashboard"

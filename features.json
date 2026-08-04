@@ -11,6 +11,10 @@
     "blog": {
       "version": "1.0.0",
       "installedAt": "2026-08-02T13:38:56.968Z"
+    },
+    "access": {
+      "version": "1.0.0",
+      "installedAt": "2026-08-03T15:55:38.379Z"
     }
   }
 }

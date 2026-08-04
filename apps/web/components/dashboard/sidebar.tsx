@@ -2,11 +2,14 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { GearSix, House } from "@phosphor-icons/react"
+import { GearSixIcon, HouseIcon } from "@phosphor-icons/react"
 // feature-manager:imports:begin
 // feature-manager:imports:blog:begin
-import { NoteBlank } from "@phosphor-icons/react"
+import { NoteBlankIcon } from "@phosphor-icons/react"
 // feature-manager:imports:blog:end
+// feature-manager:imports:access:begin
+import { UsersThreeIcon } from "@phosphor-icons/react"
+// feature-manager:imports:access:end
 // feature-manager:imports:end
 
 import { cn } from "@workspace/ui/lib/utils"
@@ -14,13 +17,16 @@ import type { Session } from "@/lib/auth-client"
 import { UserNav } from "@/components/dashboard/user-nav"
 
 const navItems = [
-  { label: "Overview", href: "/dashboard", icon: House },
+  { label: "Overview", href: "/dashboard", icon: HouseIcon },
   // feature-manager:nav:begin
   // feature-manager:nav:blog:begin
-  { label: "Posts", href: "/dashboard/posts", icon: NoteBlank },
+  { label: "Posts", href: "/dashboard/posts", icon: NoteBlankIcon },
   // feature-manager:nav:blog:end
+  // feature-manager:nav:access:begin
+  { label: "Users", href: "/dashboard/users", icon: UsersThreeIcon, adminOnly: true },
+  // feature-manager:nav:access:end
   // feature-manager:nav:end
-  { label: "Settings", href: "/dashboard/settings", icon: GearSix },
+  { label: "Settings", href: "/dashboard/settings", icon: GearSixIcon },
 ]
 
 export function Sidebar({ user }: { user: Session["user"] }) {
@@ -36,6 +42,11 @@ export function Sidebar({ user }: { user: Session["user"] }) {
 
       <nav className="flex flex-1 flex-col gap-1 p-3">
         {navItems.map((item) => {
+          // feature-manager:nav-visibility:begin
+          // feature-manager:nav-visibility:access:begin
+          if ("adminOnly" in item && item.adminOnly && user.role !== "admin") return null
+          // feature-manager:nav-visibility:access:end
+          // feature-manager:nav-visibility:end
           const isActive =
             item.href === "/dashboard"
               ? pathname === "/dashboard"

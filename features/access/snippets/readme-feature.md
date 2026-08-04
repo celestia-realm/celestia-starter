@@ -1,0 +1,1 @@
+- **access** — User management (roles, ban, delete) with RBAC route guards and ABAC policies over the Better Auth admin plugin

@@ -6,6 +6,9 @@ import { auth } from "./auth"
 // feature-manager:imports:blog:begin
 import { blogRoutes } from "./features/blog/routes"
 // feature-manager:imports:blog:end
+// feature-manager:imports:access:begin
+import { accessRoutes } from "./features/access/routes"
+// feature-manager:imports:access:end
 // feature-manager:imports:end
 
 const app = new Hono()
@@ -21,6 +24,9 @@ const app = new Hono()
   // feature-manager:routes:blog:begin
   .route("/", blogRoutes)
   // feature-manager:routes:blog:end
+  // feature-manager:routes:access:begin
+  .route("/", accessRoutes)
+  // feature-manager:routes:access:end
   // feature-manager:routes:end
 
 // Better Auth catch-all handler. Registered at runtime but intentionally kept

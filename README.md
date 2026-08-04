@@ -93,6 +93,9 @@ pnpm add-feature auth
 <!-- feature-manager:features:blog:begin -->
 - **blog** — Full CRUD blog (backend endpoints in `apps/api`, dashboard UI in `apps/web`) over the typed Hono RPC client
 <!-- feature-manager:features:blog:end -->
+<!-- feature-manager:features:access:begin -->
+- **access** — User management (roles, ban, delete) with RBAC route guards and ABAC policies over the Better Auth admin plugin
+<!-- feature-manager:features:access:end -->
 <!-- feature-manager:features:end -->
 
 > The canonical setup is the decoupled architecture described in the [Backend API docs](apps/docs/content/docs/backend.mdx): auth and data live in `apps/api`, and the frontend is pure UI. The `features/auth` template predates this separation; see the docs for the current layout.

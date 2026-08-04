@@ -46,6 +46,12 @@ features/<name>/
 - Backend code must never import from `apps/web`; frontend code must never import server auth or DB directly.
 <!-- END:architecture-agent-rules -->
 
+<!-- BEGIN:feature-scaffolding-agent-rules -->
+# Creating new features (mandatory)
+
+New features MUST be authored as installable feature packages under `features/<name>/` and installed with `pnpm add-feature <name>` — never hand-copied into `apps/` or `packages/`. Before scaffolding any feature, read and follow the guide at `apps/docs/content/docs/features.mdx` (published at `/docs/features`, and included in the docs site's `/llms.txt` and `/llms-full.txt`). Use `features/blog/` as the reference implementation.
+<!-- END:feature-scaffolding-agent-rules -->
+
 <!-- BEGIN:docs-agent-rules -->
 # Documentation is mandatory
 

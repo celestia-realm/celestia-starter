@@ -1,6 +1,9 @@
 import { createAuthClient } from "better-auth/react"
 import { twoFactorClient } from "better-auth/plugins"
 // feature-manager:client-imports:begin
+// feature-manager:client-imports:access:begin
+import { adminClient } from "better-auth/client/plugins"
+// feature-manager:client-imports:access:end
 // feature-manager:client-imports:end
 
 // The frontend is a pure UI client: it talks to auth over HTTP (proxied to the
@@ -10,6 +13,9 @@ export const authClient = createAuthClient({
   plugins: [
     twoFactorClient(),
     // feature-manager:client-plugins:begin
+    // feature-manager:client-plugins:access:begin
+    adminClient(),
+    // feature-manager:client-plugins:access:end
     // feature-manager:client-plugins:end
   ],
 })

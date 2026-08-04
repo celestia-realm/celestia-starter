@@ -1,0 +1,40 @@
+{
+  "name": "access",
+  "version": "1.0.0",
+  "description": "User management (roles, ban, delete) with RBAC route guards and ABAC policies over the Better Auth admin plugin",
+  "requires": ["auth", "dashboard"],
+  "copies": [
+    { "from": "api/src/features/access/access.ts", "to": "apps/api/src/features/access/access.ts" },
+    { "from": "api/src/features/access/routes.ts", "to": "apps/api/src/features/access/routes.ts" },
+    { "from": "web/app/(dashboard)/dashboard/users/page.tsx", "to": "apps/web/app/(dashboard)/dashboard/users/page.tsx" },
+    { "from": "web/components/access/users-manager.tsx", "to": "apps/web/components/access/users-manager.tsx" },
+    { "from": "docs/access.mdx", "to": "apps/docs/content/docs/access.mdx" }
+  ],
+  "insertions": [
+    { "file": "apps/api/src/app.ts", "marker": "imports", "snippet": "snippets/api-imports.ts" },
+    { "file": "apps/api/src/app.ts", "marker": "routes", "snippet": "snippets/api-routes.ts" },
+    { "file": "apps/api/src/auth.ts", "marker": "auth-imports", "snippet": "snippets/auth-plugin-import.ts" },
+    { "file": "apps/api/src/auth.ts", "marker": "auth-plugins", "snippet": "snippets/auth-plugin.ts" },
+    { "file": "apps/web/lib/auth-client.ts", "marker": "client-imports", "snippet": "snippets/client-plugin-import.ts" },
+    { "file": "apps/web/lib/auth-client.ts", "marker": "client-plugins", "snippet": "snippets/client-plugin.ts" },
+    { "file": "packages/db/src/schema.ts", "marker": "user-fields", "snippet": "snippets/db-user-fields.ts" },
+    { "file": "packages/db/src/schema.ts", "marker": "tables", "snippet": "snippets/db-tables.ts" },
+    { "file": "apps/web/components/dashboard/sidebar.tsx", "marker": "imports", "snippet": "snippets/sidebar-imports.ts" },
+    { "file": "apps/web/components/dashboard/sidebar.tsx", "marker": "nav", "snippet": "snippets/sidebar-nav.ts" },
+    { "file": "apps/web/components/dashboard/sidebar.tsx", "marker": "nav-visibility", "snippet": "snippets/sidebar-visibility.ts" },
+    { "file": "apps/docs/content/docs/index.mdx", "marker": "cards", "snippet": "snippets/docs-card.mdx" },
+    { "file": "README.md", "marker": "features", "snippet": "snippets/readme-feature.md" }
+  ],
+  "jsonAppends": [
+    { "file": "apps/docs/content/docs/meta.json", "path": "pages", "value": "access" }
+  ],
+  "dependencies": {
+    "apps/api": {
+      "@hono/zod-validator": "^0.7.0",
+      "drizzle-orm": "^0.45.2",
+      "zod": "^4.4.3"
+    }
+  },
+  "postInstall": ["pnpm --filter @workspace/db db:push"],
+  "notes": "Adds role/banned columns and an audit_log table (run db:push), the admin() Better Auth plugin, and /dashboard/users. Promote your first admin: UPDATE \"user\" SET role = 'admin' WHERE email = 'you@example.com';"
+}

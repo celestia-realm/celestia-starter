@@ -21,6 +21,12 @@ export const user = pgTable("user", {
     .notNull(),
   twoFactorEnabled: boolean("two_factor_enabled").default(false),
   // feature-manager:user-fields:begin
+  // feature-manager:user-fields:access:begin
+  role: text("role").default("user"),
+  banned: boolean("banned").default(false).notNull(),
+  banReason: text("ban_reason"),
+  banExpires: timestamp("ban_expires"),
+  // feature-manager:user-fields:access:end
   // feature-manager:user-fields:end
 });
 
@@ -157,4 +163,21 @@ export const postsRelations = relations(posts, ({ one }) => ({
   }),
 }));
 // feature-manager:tables:blog:end
+// feature-manager:tables:access:begin
+export const auditLog = pgTable(
+  "audit_log",
+  {
+    id: text("id").primaryKey(),
+    actorId: text("actor_id").references(() => user.id, {
+      onDelete: "set null",
+    }),
+    action: text("action").notNull(),
+    targetId: text("target_id"),
+    details: text("details"),
+    ipAddress: text("ip_address"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => [index("auditLog_createdAt_idx").on(table.createdAt)],
+);
+// feature-manager:tables:access:end
 // feature-manager:tables:end
