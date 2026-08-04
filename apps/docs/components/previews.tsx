@@ -1253,3 +1253,74 @@ export function TooltipPreview() {
     </PreviewShell>
   );
 }
+
+function ColorSwatch({ label, className, value }: Readonly<{ label: string; className: string; value?: string }>) {
+  return (
+    <div className="flex items-center gap-3">
+      <div className={`size-10 shrink-0 rounded-lg border border-fd-border ${className}`} />
+      <div className="flex flex-col">
+        <span className="text-sm font-medium">{label}</span>
+        {value && <span className="font-mono text-xs text-muted-foreground">{value}</span>}
+      </div>
+    </div>
+  );
+}
+
+export function ColorsPreview() {
+  return (
+    <PreviewShell>
+      <div className="grid w-full max-w-3xl gap-8">
+        {/* Celestia landing tokens */}
+        <div className="flex flex-col gap-3">
+          <h4 className="text-sm font-semibold">Celestia Landing TOKENS</h4>
+          <div className="grid gap-3 rounded-lg bg-[#0a0a0a] p-4 sm:grid-cols-2">
+            <ColorSwatch label="bg" className="bg-[#0a0a0a]" value="#0a0a0a" />
+            <ColorSwatch label="surface" className="bg-[#141414]" value="#141414" />
+            <ColorSwatch label="text-primary" className="bg-[#f5f5f5]" value="#f5f5f5" />
+            <ColorSwatch label="fog" className="bg-[#878787]" value="#878787" />
+            <ColorSwatch label="stroke" className="bg-[#1f1f1f]" value="#1f1f1f" />
+          </div>
+        </div>
+
+        {/* Brand accent */}
+        <div className="flex flex-col gap-3">
+          <h4 className="text-sm font-semibold">Brand Accent</h4>
+          <div className="flex items-center gap-3 rounded-lg border border-fd-border p-4">
+            <div className="h-10 w-20 shrink-0 rounded-lg" style={{ background: 'linear-gradient(90deg, #89aacc 0%, #4e85bf 100%)' }} />
+            <div className="flex flex-col">
+              <span className="text-sm font-medium">accent-gradient</span>
+              <span className="font-mono text-xs text-muted-foreground">#89aacc → #4e85bf</span>
+            </div>
+          </div>
+        </div>
+
+        {/* shadcn semantic tokens */}
+        <div className="flex flex-col gap-3">
+          <h4 className="text-sm font-semibold">shadcn SEMANTIC TOKENS</h4>
+          <div className="grid gap-3 rounded-lg border border-fd-border p-4 sm:grid-cols-2">
+            <ColorSwatch label="background" className="bg-background" value="oklch(1 0 0)" />
+            <ColorSwatch label="foreground" className="bg-foreground" value="oklch(0.145 0 0)" />
+            <ColorSwatch label="primary" className="bg-primary" value="oklch(0.205 0 0)" />
+            <ColorSwatch label="secondary" className="bg-secondary" value="oklch(0.97 0 0)" />
+            <ColorSwatch label="muted" className="bg-muted" value="oklch(0.97 0 0)" />
+            <ColorSwatch label="accent" className="bg-accent" value="oklch(0.97 0 0)" />
+            <ColorSwatch label="destructive" className="bg-destructive" value="oklch(0.577 0.245 27.325)" />
+            <ColorSwatch label="border" className="bg-border" value="oklch(0.922 0 0)" />
+          </div>
+        </div>
+
+        {/* Chart colors */}
+        <div className="flex flex-col gap-3">
+          <h4 className="text-sm font-semibold">Chart Colors</h4>
+          <div className="flex gap-2 rounded-lg border border-fd-border p-4">
+            <div className="flex h-10 flex-1 items-center justify-center rounded-md bg-chart-1 text-xs font-medium text-chart-1-foreground">1</div>
+            <div className="flex h-10 flex-1 items-center justify-center rounded-md bg-chart-2 text-xs font-medium text-chart-2-foreground">2</div>
+            <div className="flex h-10 flex-1 items-center justify-center rounded-md bg-chart-3 text-xs font-medium text-chart-3-foreground">3</div>
+            <div className="flex h-10 flex-1 items-center justify-center rounded-md bg-chart-4 text-xs font-medium text-chart-4-foreground">4</div>
+            <div className="flex h-10 flex-1 items-center justify-center rounded-md bg-chart-5 text-xs font-medium text-chart-5-foreground">5</div>
+          </div>
+        </div>
+      </div>
+    </PreviewShell>
+  );
+}

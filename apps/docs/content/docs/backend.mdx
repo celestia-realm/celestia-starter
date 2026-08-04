@@ -1,6 +1,7 @@
 ---
 title: Backend API
 description: A standalone Hono backend that owns the database, business logic, and auth — the frontend is pure UI
+icon: backend
 ---
 
 Celestia uses a **decoupled architecture**. The backend (`apps/api`) owns the database, all business logic, and authentication. The frontend (`apps/web`) is pure UI: it renders components and talks to the backend over HTTP. There is no database access and no server-side auth instance in the frontend.

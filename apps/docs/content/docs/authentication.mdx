@@ -1,6 +1,7 @@
 ---
 title: Authentication
 description: Email/password and Google OAuth authentication powered by Better Auth, running on the backend
+icon: auth
 ---
 
 Authentication runs entirely on the **backend** (`apps/api`). Better Auth handles email/password sign-up, Google OAuth, and two-factor authentication (2FA), and persists sessions through the Drizzle adapter. The frontend never touches the database or a server auth instance — it uses the Better Auth client over the `/api` proxy.
