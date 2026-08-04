@@ -378,7 +378,7 @@ export function CarouselPreview() {
       <Carousel className="w-64">
         <CarouselContent>
           {['bg-primary/80', 'bg-primary/60', 'bg-primary/40', 'bg-primary/20'].map((color, index) => (
-            <CarouselItem key={index}>
+            <CarouselItem key={`${color}`}>
               <div className={`flex h-28 items-center justify-center rounded-md text-sm text-primary-foreground ${color}`}>
                 {index + 1}
               </div>

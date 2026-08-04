@@ -5,7 +5,7 @@ import { Provider } from '@/components/provider';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { source } from '@/lib/source';
 import { baseOptions } from '@/lib/layout.shared';
-import { DocsSidebarBanner, DocsSidebarFooter, sidebarComponents } from '@/components/sidebar';
+import { DocsSidebarFooter, sidebarComponents } from '@/components/sidebar';
 import './global.css';
 
 const inter = Inter({
@@ -21,7 +21,6 @@ export default function Layout({ children }: LayoutProps<'/'>) {
             tree={source.getPageTree()}
             {...baseOptions()}
             sidebar={{
-              banner: <DocsSidebarBanner />,
               footer: <DocsSidebarFooter />,
               components: sidebarComponents,
             }}
