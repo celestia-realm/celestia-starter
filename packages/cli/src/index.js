@@ -167,9 +167,12 @@ function parseArgs(argv) {
 
 function printHelp() {
   console.log(`
-${bold("celestia-starter")} — scaffold a new project
+${bold("@celestia-project/create")} — scaffold a new project
 
-${bold("Usage:")} npx celestia-starter [dir] [options]
+${bold("Usage:")}
+  npx @celestia-project/create [dir] [options]
+  npx celestia-starter [dir] [options]
+  npm create celestia-project@latest [dir] [options]
 
 ${bold("Options:")}
   --features <a,b>   Comma-separated features to install (skips prompts, dependencies auto-included)
