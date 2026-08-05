@@ -12,7 +12,9 @@
     "scaffold": "node packages/cli/src/index.js",
     "add-feature": "tsx packages/feature-manager/src/cli/index.ts add",
     "remove-feature": "tsx packages/feature-manager/src/cli/index.ts remove",
-    "list-features": "tsx packages/feature-manager/src/cli/index.ts list"
+    "list-features": "tsx packages/feature-manager/src/cli/index.ts list",
+    "publish:packages": "bash scripts/publish.sh",
+    "publish:dry-run": "bash scripts/publish.sh --dry-run"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.6",
