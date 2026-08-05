@@ -71,8 +71,11 @@ for PKG_DIR in "${PACKAGES[@]}"; do
   echo "${BOLD}─────────────────────────────────────────${RESET}"
   info "Publishing ${CYAN}${PKG_NAME}${RESET} @ ${PKG_VER}"
 
-  # Check if this exact version is already published
-  PUBLISHED_VER=$(npm view "${PKG_NAME}@${PKG_VER}" version --registry https://registry.npmjs.org 2>/dev/null || true)
+  # Check if this exact version is already published (always query the public registry)
+  PUBLISHED_VER=$(npm view "${PKG_NAME}" version \
+    --registry https://registry.npmjs.org \
+    --json 2>/dev/null \
+    | tr -d '"' || true)
   if [[ "$PUBLISHED_VER" == "$PKG_VER" ]]; then
     warn "${PKG_NAME}@${PKG_VER} is already published — skipping."
     continue
