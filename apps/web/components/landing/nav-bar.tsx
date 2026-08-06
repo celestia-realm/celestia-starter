@@ -15,7 +15,7 @@ const LINKS: {
   { href: "#architecture", label: "Architecture" },
   { href: "#install", label: "Install" },
   {
-    href: "https://celestia-realm.github.io/celestia-starter/access",
+    href: "https://dev-celestia.github.io/celestia-starter/",
     label: "Docs",
     external: true,
   },
