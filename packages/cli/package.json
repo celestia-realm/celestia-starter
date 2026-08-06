@@ -11,8 +11,7 @@
   },
   "homepage": "https://github.com/celestia-realm/celestia-starter#readme",
   "bin": {
-    "create-celestia": "./src/index.js",
-    "celestia-starter": "./src/index.js"
+    "create-celestia": "./src/index.js"
   },
   "files": [
     "src"

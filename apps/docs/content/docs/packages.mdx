@@ -4,11 +4,13 @@ description: Shared workspace packages for UI components, linting, TypeScript co
 icon: package
 ---
 
-The `packages/` directory contains private workspace packages consumed by apps via pnpm's `workspace:*` protocol. Each package owns a single concern and can be versioned or replaced in isolation.
+The `packages/` directory contains shared workspace packages. Some are private workspace-only packages (`@workspace/*`), others are published to npm under the `@celestia-project` org.
 
 ## @celestia-project/ui
 
-A shadcn-based React component library styled with Tailwind CSS and Base UI.
+[![npm](https://img.shields.io/npm/v/@celestia-project/ui)](https://www.npmjs.com/package/@celestia-project/ui)
+
+A shadcn-style React component library built on **Base UI** and **Tailwind CSS v4**, with 60+ components.
 
 **Exports:**
 
@@ -32,20 +34,49 @@ import { cn } from "@celestia-project/ui/lib/utils"
 
 ### Using it outside this monorepo
 
-The package is bundled with [tsup](https://tsup.egoist.dev) into compiled ESM + type declarations (`pnpm build` inside `packages/ui`), so it can be published to npm and installed in any React project:
+The package is published to npm and can be installed in any React 19 + Tailwind CSS v4 project:
 
 ```bash
-pnpm build --filter @celestia-project/ui   # emits dist/
-npm publish --access public        # from packages/ui
+pnpm add @celestia-project/ui
 ```
 
-Consumers need Tailwind CSS v4 in their project, because components are styled with utility classes:
+Import the global stylesheet in your app entry point:
 
 ```css
-/* consumer's global CSS */
+/* app/layout.tsx or global.css */
 @import "@celestia-project/ui/globals.css";
-@source "../node_modules/@celestia-project/ui/dist";
 ```
+
+See the [full component reference](https://www.npmjs.com/package/@celestia-project/ui) on npm.
+
+---
+
+## @celestia-project/create
+
+[![npm](https://img.shields.io/npm/v/@celestia-project/create)](https://www.npmjs.com/package/@celestia-project/create)
+
+The interactive CLI that scaffolds a new Celestia Starter project. Lives in `packages/cli`.
+
+**Usage:**
+
+```bash
+npx @celestia-project/create my-app
+npx @celestia-project/create my-app --features auth,dashboard
+```
+
+**Bin registered:** `create-celestia`
+
+**Publishing:**
+
+```bash
+# From the monorepo root — publishes both @celestia-project/ui and @celestia-project/create
+pnpm publish:packages
+
+# Dry run first (previews tarball contents without uploading)
+pnpm publish:dry-run
+```
+
+See the [CLI docs](/docs/cli) for the full feature flag reference and local testing guide.
 
 ---
 

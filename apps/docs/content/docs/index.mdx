@@ -1,6 +1,6 @@
 ---
 title: Celestia Starter
-description: A modern full-stack starter built with Next.js, Hono, Better Auth, and Drizzle ORM
+description: A modern full-stack monorepo starter built with Next.js 15, Hono, Better Auth, and Drizzle ORM
 icon: home
 ---
 
@@ -8,13 +8,13 @@ Celestia Starter is a production-ready monorepo template with a decoupled archit
 
 ## Tech Stack
 
-- **Next.js 16** — Frontend (pure UI), App Router
+- **Next.js 15** — Frontend (pure UI), App Router
 - **Hono** — Standalone backend API (owns DB + auth + business logic)
 - **Better Auth** — Email/password + OAuth authentication (runs on the backend)
 - **Drizzle ORM** — Type-safe PostgreSQL queries and migrations
 - **Hono RPC** — End-to-end typed API calls from frontend to backend
-- **Tailwind CSS + shadcn/ui** — Utility-first styling with accessible components
-- **Turborepo + pnpm** — Fast monorepo builds and workspace management
+- **Tailwind CSS v4 + @celestia-project/ui** — Utility-first styling with 60+ accessible components
+- **Turborepo + pnpm workspaces** — Fast monorepo builds and workspace management
 
 ## Project Structure
 
@@ -36,6 +36,10 @@ celestia-starter/
 ## Getting Started
 
 ```bash
+# Using the CLI
+npx @celestia-project/create my-app
+
+# Or clone manually
 pnpm install
 pnpm --filter @workspace/db db:push   # create the database schema
 pnpm dev                               # starts web + api + docs
@@ -47,7 +51,7 @@ pnpm dev                               # starts web + api + docs
   <Card title="Authentication" href="/docs/authentication" description="Email/password and Google OAuth with Better Auth" />
   <Card title="Backend API" href="/docs/backend" description="Standalone Hono backend with Drizzle, auth, and typed RPC" />
   <Card title="Dashboard" href="/docs/dashboard" description="Protected dashboard with sidebar, route protection, and settings" />
-  <Card title="CLI" href="/docs/cli" description="Scaffold a new project interactively with npx celestia-starter" />
+  <Card title="CLI" href="/docs/cli" description="Scaffold a new project interactively with npx @celestia-project/create" />
   {/* feature-manager:cards:begin */}
   {/* feature-manager:cards:blog:begin */}
   <Card title="Blog (CRUD)" href="/docs/blog" description="Full create-read-update-delete blog over the typed RPC client" />

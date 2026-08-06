@@ -1,15 +1,15 @@
 ---
 title: CLI
-description: Scaffold a new Celestia project interactively with npx celestia-starter
+description: Scaffold a new Celestia project interactively with npx @celestia-project/create
 icon: terminal
 ---
 
-The `celestia-starter` CLI creates a new project from the template, asks which features you need, and wires everything up so you can run `pnpm dev` immediately.
+The `@celestia-project/create` CLI creates a new project from the template, asks which features you need, and wires everything up so you can run `pnpm dev` immediately.
 
 ## Quick start
 
 ```bash
-npx celestia-starter my-app
+npx @celestia-project/create my-app
 ```
 
 The installer will:
@@ -23,7 +23,7 @@ The installer will:
 ## Non-interactive usage
 
 ```bash
-npx celestia-starter my-app --features auth,dashboard
+npx @celestia-project/create my-app --features auth,dashboard
 ```
 
 | Flag                 | Description                                                                    |
@@ -37,13 +37,62 @@ npx celestia-starter my-app --features auth,dashboard
 - Node.js ≥ 20, `pnpm`, and `git` on your PATH
 - A running PostgreSQL if you let the installer push the schema
 
-## Publishing the CLI
+## Database migration errors
 
-The CLI lives in `packages/cli` and is published as the `celestia-starter` npm package (that is what makes `npx celestia-starter` work), alongside `@celestia-project/ui` under the `celestia-project` npm org:
+If `db:push` fails during scaffolding (e.g. PostgreSQL isn't running yet), the CLI will show the exact commands to recover:
 
 ```bash
-cd packages/cli
-npm publish
+# Once your database is up:
+cd my-app
+pnpm --filter @workspace/db db:push
+
+# Or with a one-liner:
+DATABASE_URL="postgresql://..." pnpm --filter @workspace/db db:push
 ```
 
-`DEFAULT_REPO` in `packages/cli/src/index.js` points at the public template repository — update it if you fork. To try the CLI from this repository without publishing, run `pnpm scaffold`.
+Need a local database? Start one with Docker:
+
+```bash
+docker run -d --name celestia-db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=celestia \
+  -p 5432:5432 postgres:16-alpine
+```
+
+## Testing the CLI locally
+
+```bash
+# Fastest — run directly with node (from the monorepo root)
+node packages/cli/src/index.js my-test-app
+
+# Simulate the installed bin via npm link
+cd packages/cli && npm link
+create-celestia my-test-app
+
+# Most realistic — pack a real .tgz and run it via npx
+cd packages/cli && npm pack
+npx ./celestia-project-create-*.tgz my-test-app
+```
+
+Or use the npm scripts from `packages/cli`:
+
+```bash
+pnpm --filter @celestia-project/create test:run   # node direct
+pnpm --filter @celestia-project/create test:pack  # tarball → npx
+```
+
+## Publishing
+
+The CLI is published to npm under the `@celestia-project` org using the monorepo publish script:
+
+```bash
+# Dry run — previews what will be uploaded
+pnpm publish:dry-run
+
+# Publish all packages (@celestia-project/ui + @celestia-project/create)
+pnpm publish:packages
+```
+
+`DEFAULT_REPO` in `packages/cli/src/index.js` points at the public template repository — update it if you fork.
+To try the CLI from this repository without publishing, run `pnpm scaffold`.
