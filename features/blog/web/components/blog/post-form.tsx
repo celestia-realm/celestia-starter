@@ -3,17 +3,17 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
-import { Button } from "@celestia-project/ui/components/button"
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@celestia-project/ui/components/card"
-import { Input } from "@celestia-project/ui/components/input"
-import { Label } from "@celestia-project/ui/components/label"
-import { Textarea } from "@celestia-project/ui/components/textarea"
+  Input,
+  Label,
+  Textarea,
+} from "@celestia-project/ui"
 
 import { api } from "@/lib/api-client"
 

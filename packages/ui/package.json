@@ -70,7 +70,6 @@
       "import": "./dist/index.js"
     },
     "./globals.css": "./src/styles/globals.css",
-    "./postcss.config": "./postcss.config.mjs",
     "./lib/*": {
       "types": "./dist/lib/*.d.ts",
       "import": "./dist/lib/*.js"

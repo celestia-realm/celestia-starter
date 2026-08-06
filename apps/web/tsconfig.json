@@ -3,6 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
+      "@celestia-project/ui": ["../../packages/ui/src/index.ts"],
       "@celestia-project/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [

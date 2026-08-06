@@ -11,32 +11,26 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@celestia-project/ui/components/alert-dialog"
-import { Badge } from "@celestia-project/ui/components/badge"
-import { Button } from "@celestia-project/ui/components/button"
-import {
+  Badge,
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@celestia-project/ui/components/card"
-import { Input } from "@celestia-project/ui/components/input"
-import {
+  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@celestia-project/ui/components/select"
-import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from "@celestia-project/ui/components/table"
+} from "@celestia-project/ui"
 
 import { api } from "@/lib/api-client"
 

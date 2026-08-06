@@ -1,1 +1,7 @@
-export { default } from "@celestia-project/ui/postcss.config";
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;

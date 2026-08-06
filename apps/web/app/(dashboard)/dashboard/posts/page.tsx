@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 
-import { Button } from "@celestia-project/ui/components/button"
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@celestia-project/ui/components/card"
+} from "@celestia-project/ui"
 
 import { api } from "@/lib/api-client"
 

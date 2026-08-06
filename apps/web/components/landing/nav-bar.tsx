@@ -3,7 +3,7 @@
 import Link from "next/link"
 import * as React from "react"
 import { WarningIcon } from "@phosphor-icons/react"
-import { Button } from "@celestia-project/ui/components/button"
+import { Button } from "@celestia-project/ui"
 import { cn } from "@celestia-project/ui/lib/utils"
 
 const LINKS: {
@@ -110,26 +110,28 @@ export function NavBar() {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
-            render={<Link href={GITHUB_URL} target="_blank" rel="noreferrer" />}
-            variant="ghost"
-            size="lg"
-            aria-label="Star on GitHub"
-            className="text-fog hover:text-text-primary"
-          >
-            <GithubIcon className="size-5" />
-          </Button>
-          <Button
-            render={<Link href="/sign-in" />}
-            variant="ghost"
-            size="lg"
-            className="text-fog hover:text-text-primary"
-          >
-            Sign in
-          </Button>
-          <Button render={<Link href="/sign-up" />} variant="default" size="lg">
-            Get started
-          </Button>
+          <Link href={GITHUB_URL} target="_blank" rel="noreferrer">
+            <Button
+              variant="ghost"
+              size="lg"
+              aria-label="Star on GitHub"
+            >
+              <GithubIcon className="size-5" />
+            </Button>
+          </Link>
+          <Link href="/sign-in">
+            <Button
+              variant="ghost"
+              size="lg"
+            >
+              Sign in
+            </Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button variant="default" size="lg">
+              Get started
+            </Button>
+          </Link>
         </div>
       </nav>
     </header>

@@ -2,7 +2,7 @@
 
 import { Check, Copy } from "@phosphor-icons/react"
 import * as React from "react"
-import { Button } from "@celestia-project/ui/components/button"
+import { Button } from "@celestia-project/ui"
 import { cn } from "@celestia-project/ui/lib/utils"
 
 /**

@@ -15,7 +15,9 @@
     "jsx": "react-jsx",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@celestia-project/ui": ["../../packages/ui/src/index.ts"],
+      "@celestia-project/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
       {

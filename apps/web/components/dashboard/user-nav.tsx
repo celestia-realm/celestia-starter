@@ -12,7 +12,7 @@ import {
   MenuPositioner,
   MenuSeparator,
   MenuTrigger,
-} from "@celestia-project/ui/components/menu"
+} from "@celestia-project/ui"
 
 import { signOut } from "@/lib/auth-client"
 import type { Session } from "@/lib/auth-client"

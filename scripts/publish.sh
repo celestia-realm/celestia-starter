@@ -27,10 +27,13 @@ warn()    { echo "${YELLOW}${BOLD}[WARN]${RESET}  $*"; }
 error()   { echo "${RED}${BOLD}[ERROR]${RESET} $*" >&2; exit 1; }
 
 # ── all publishable packages ─────────────────────────────────
-declare -A PKG_DIRS=(
-  ["ui"]="packages/ui"
-  ["cli"]="packages/cli"
-)
+get_pkg_dir() {
+  case "$1" in
+    ui) echo "packages/ui" ;;
+    cli) echo "packages/cli" ;;
+    *) echo "" ;;
+  esac
+}
 
 # ── parse args ───────────────────────────────────────────────
 DRY_RUN=""
@@ -48,15 +51,14 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Validate --pkg value
-if [[ -n "$TARGET" && -z "${PKG_DIRS[$TARGET]+_}" ]]; then
-  error "Unknown package \"${TARGET}\". Valid options: ${!PKG_DIRS[*]}"
-fi
-
-# Build list of packages to process
 if [[ -n "$TARGET" ]]; then
+  PKG_DIR=$(get_pkg_dir "$TARGET")
+  if [[ -z "$PKG_DIR" ]]; then
+    error "Unknown package \"${TARGET}\". Valid options: ui, cli"
+  fi
   SELECTED=("$TARGET")
 else
-  SELECTED=("${!PKG_DIRS[@]}")
+  SELECTED=("ui" "cli")
 fi
 
 # Respect a stable publish order: ui first, then cli
@@ -112,7 +114,7 @@ if [[ -n "$BUMP" ]]; then
   echo ""
   info "Bumping ${BOLD}${BUMP}${RESET} version for: ${ORDERED[*]}"
   for KEY in "${ORDERED[@]}"; do
-    PKG_DIR="${PKG_DIRS[$KEY]}"
+    PKG_DIR=$(get_pkg_dir "$KEY")
     PKG_NAME=$(node -p "require('./${PKG_DIR}/package.json').name")
     OLD_VER=$(node -p "require('./${PKG_DIR}/package.json').version")
 
@@ -140,7 +142,8 @@ if [[ -n "$BUMP" ]]; then
 
   if [[ -z "$DRY_RUN" ]]; then
     read -r -p "${YELLOW}${BOLD}[WARN]${RESET}  Continue to publish? [y/N] " CONFIRM
-    [[ "${CONFIRM,,}" != "y" && "${CONFIRM,,}" != "yes" ]] && { info "Aborted."; exit 0; }
+    CONFIRM_LOWER=$(echo "$CONFIRM" | tr '[:upper:]' '[:lower:]')
+    [[ "$CONFIRM_LOWER" != "y" && "$CONFIRM_LOWER" != "yes" ]] && { info "Aborted."; exit 0; }
   fi
 fi
 
@@ -148,7 +151,7 @@ fi
 echo ""
 PUBLISHED=()
 for KEY in "${ORDERED[@]}"; do
-  PKG_DIR="${PKG_DIRS[$KEY]}"
+  PKG_DIR=$(get_pkg_dir "$KEY")
   PKG_NAME=$(node -p "require('./${PKG_DIR}/package.json').name")
   PKG_VER=$(node -p "require('./${PKG_DIR}/package.json').version")
 
