@@ -6,7 +6,7 @@ import { Provider } from '@/components/provider';
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { source } from '@/lib/source';
 import { baseOptions } from '@/lib/layout.shared';
-import { DocsSidebarFooter, sidebarComponents } from '@/components/sidebar';
+import { sidebarComponents } from '@/components/sidebar';
 import '@celestia-project/ui/globals.css';
 import './global.css';
 
@@ -51,7 +51,6 @@ export default function Layout({ children }: LayoutProps<'/'>) {
             tree={sidebarTree}
             {...baseOptions()}
             sidebar={{
-              footer: <DocsSidebarFooter />,
               components: sidebarComponents,
             }}
           >
