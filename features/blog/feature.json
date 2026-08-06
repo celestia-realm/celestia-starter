@@ -25,7 +25,8 @@
     { "file": "apps/docs/content/docs/meta.json", "path": "pages", "value": "blog" }
   ],
   "dependencies": {
-    "apps/api": { "drizzle-orm": "^0.45.2" }
+    "apps/api": { "drizzle-orm": "^0.45.2" },
+    "apps/web": { "@phosphor-icons/react": "^2.1.10" }
   },
   "postInstall": ["pnpm --filter @workspace/db db:push"],
   "notes": "Creates the posts table (run db:push), adds authenticated CRUD routes to the backend, and a Posts section to the dashboard. Open http://localhost:3000/dashboard/posts."

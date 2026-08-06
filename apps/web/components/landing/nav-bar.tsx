@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import * as React from "react"
+import { WarningIcon } from "@phosphor-icons/react"
 import { Button } from "@celestia-project/ui/components/button"
 import { cn } from "@celestia-project/ui/lib/utils"
 
@@ -67,10 +68,20 @@ export function NavBar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300 motion-reduce:transition-none",
         scrolled
-          ? "border-b border-stroke bg-bg backdrop-blur-md"
+          ? "border-b border-stroke bg-bg/90 backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
     >
+      {/* Active Development Warning Bar */}
+      <div className="border-b border-amber-500/20 bg-amber-500/10 px-4 py-1.5 text-center text-xs text-amber-200/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-center gap-2">
+          <WarningIcon className="size-4 shrink-0 text-amber-400" />
+          <span>
+            <strong className="font-medium text-amber-300">Under Active Development:</strong> Features are undergoing testing and refinement.
+          </span>
+        </div>
+      </div>
+
       <nav
         aria-label="Main"
         className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8"

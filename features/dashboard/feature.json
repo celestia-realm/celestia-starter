@@ -14,5 +14,10 @@
     { "from": "web/app/(auth)/sign-in/page.tsx", "to": "apps/web/app/(auth)/sign-in/page.tsx" },
     { "from": "web/app/(auth)/sign-up/page.tsx", "to": "apps/web/app/(auth)/sign-up/page.tsx" }
   ],
+  "dependencies": {
+    "apps/web": {
+      "@phosphor-icons/react": "^2.1.10"
+    }
+  },
   "notes": "Pure frontend feature. Reads the session with useSession() and fetches data through the typed Hono RPC client (@/lib/api-client). Assumes the separated backend (apps/api) and @workspace/db already exist, and that apps/web/lib/api-client.ts and the /api proxy in next.config.ts are in place."
 }
