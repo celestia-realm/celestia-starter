@@ -10,7 +10,7 @@ type Line = {
 }
 
 const LINES: Line[] = [
-  { prompt: true, text: "npx celestia-starter my-app" },
+  { prompt: true, text: "npx @celestia-project/create my-app" },
   { ok: true, text: "Cloning monorepo template" },
   { ok: true, text: "Features selected: auth, dashboard, blog" },
   { ok: true, text: "Dependencies installed in 42s" },

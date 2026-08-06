@@ -20,7 +20,7 @@ export function CopyCommand({ className }: Readonly<{ className?: string }>) {
 
   async function copy() {
     try {
-      await navigator.clipboard.writeText("npx celestia-starter my-app")
+      await navigator.clipboard.writeText("npx @celestia-project/create my-app")
       setCopied(true)
     } catch {
       // Clipboard unavailable (permissions / older browsers) — no-op,
@@ -38,7 +38,7 @@ export function CopyCommand({ className }: Readonly<{ className?: string }>) {
     >
       <span className="select-none text-fog">$</span>
       <code className="px-2 text-text-primary">
-        npx celestia-starter my-app
+        npx @celestia-project/create my-app
       </code>
       <Button
         type="button"
