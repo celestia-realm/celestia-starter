@@ -18,7 +18,6 @@ const inter = Inter({
  * Flatten the `components` folder into a small-caps separator + flat page
  * list, so the sidebar doesn't nest a "Components" page inside a
  * "Components" accordion. The folder's overview page is moved out as a
- * regular item right before the separator. The folder's overview page is moved out as a
  * regular item right before the separator.
  */
 function flattenComponentsFolder(root: PageTree.Root): PageTree.Root {
@@ -28,9 +27,11 @@ function flattenComponentsFolder(root: PageTree.Root): PageTree.Root {
     if (node.type === 'folder' && node.$ref?.folder === 'components') {
       const [overview, ...pages] = node.children;
 
-      if (overview?.type === 'page') children.push(overview);
-      children.push({ type: 'separator', name: node.name });
-      children.push(...pages);
+      children.push(
+        ...(overview?.type === 'page' ? [overview] : []),
+        { type: 'separator', name: node.name },
+        ...pages,
+      );
     } else {
       children.push(node);
     }

@@ -112,7 +112,7 @@ export default function LandingPage() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
-              The box comes full.
+              The box comes full
             </h2>
             <p className="mt-5 max-w-md text-fog leading-relaxed">
               Every piece is a package you can open and read. Nothing is
@@ -148,7 +148,7 @@ export default function LandingPage() {
         <div className="mx-auto w-full max-w-6xl px-5 py-28 sm:px-8 sm:py-36">
           <Reveal>
             <h2 className="max-w-2xl text-3xl font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
-              Two apps. One boundary. Enforced by structure.
+              Two apps. One boundary. Enforced by structure
             </h2>
             <p className="mt-5 max-w-2xl text-fog leading-relaxed">
               The frontend never touches the database. The backend never
@@ -236,7 +236,7 @@ export default function LandingPage() {
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <h2 className="text-3xl font-semibold tracking-[-0.02em] text-balance sm:text-4xl">
-              From npx to pnpm dev.
+              From npx to pnpm dev
             </h2>
             <p className="mt-5 text-fog leading-relaxed">
               One command clones the template, then walks you through the rest:
