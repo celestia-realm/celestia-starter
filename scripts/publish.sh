@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 # ============================================================
 #  publish.sh — Publish @celestia-project packages to npm
+#
+#  Usage:
+#    bash scripts/publish.sh                         # publish all
+#    bash scripts/publish.sh --pkg ui                # publish only ui
+#    bash scripts/publish.sh --pkg cli               # publish only cli
+#    bash scripts/publish.sh --bump patch            # bump all + publish
+#    bash scripts/publish.sh --pkg ui --bump minor   # bump ui only + publish
+#    bash scripts/publish.sh --dry-run               # dry run all
+#    bash scripts/publish.sh --pkg ui --dry-run      # dry run ui only
 # ============================================================
 set -euo pipefail
 
@@ -17,11 +26,48 @@ success() { echo "${GREEN}${BOLD}[OK]${RESET}    $*"; }
 warn()    { echo "${YELLOW}${BOLD}[WARN]${RESET}  $*"; }
 error()   { echo "${RED}${BOLD}[ERROR]${RESET} $*" >&2; exit 1; }
 
-# ── packages to publish ─────────────────────────────────────
-PACKAGES=(
-  "packages/ui"       # @celestia-project/ui
-  "packages/cli"      # @celestia-project/create
+# ── all publishable packages ─────────────────────────────────
+declare -A PKG_DIRS=(
+  ["ui"]="packages/ui"
+  ["cli"]="packages/cli"
 )
+
+# ── parse args ───────────────────────────────────────────────
+DRY_RUN=""
+BUMP=""
+TARGET=""   # empty = all packages
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)  DRY_RUN="--dry-run" ;;
+    --bump)     BUMP="${2:?'--bump requires: patch | minor | major'}"; shift ;;
+    --pkg)      TARGET="${2:?'--pkg requires a package name: ui | cli'}"; shift ;;
+    *) error "Unknown argument: $1" ;;
+  esac
+  shift
+done
+
+# Validate --pkg value
+if [[ -n "$TARGET" && -z "${PKG_DIRS[$TARGET]+_}" ]]; then
+  error "Unknown package \"${TARGET}\". Valid options: ${!PKG_DIRS[*]}"
+fi
+
+# Build list of packages to process
+if [[ -n "$TARGET" ]]; then
+  SELECTED=("$TARGET")
+else
+  SELECTED=("${!PKG_DIRS[@]}")
+fi
+
+# Respect a stable publish order: ui first, then cli
+ORDERED=()
+for KEY in ui cli; do
+  for S in "${SELECTED[@]}"; do
+    if [[ "$S" == "$KEY" ]]; then ORDERED+=("$KEY"); fi
+  done
+done
+
+[[ -n "$DRY_RUN" ]] && warn "DRY RUN — nothing will actually be published."
 
 # ── 1. check npm auth ────────────────────────────────────────
 info "Checking npm authentication..."
@@ -48,30 +94,68 @@ if [[ "${SKIP_GIT_CHECK:-}" != "1" ]]; then
   success "Git working tree is clean."
 fi
 
-# ── 4. optional dry-run flag ─────────────────────────────────
-DRY_RUN=""
-if [[ "${1:-}" == "--dry-run" ]]; then
-  DRY_RUN="--dry-run"
-  warn "DRY RUN — nothing will actually be published."
-fi
-
-# ── 5. install & build all packages ─────────────────────────
+# ── 4. install & build ───────────────────────────────────────
 info "Installing dependencies..."
 pnpm install --frozen-lockfile
 
-info "Building packages..."
-pnpm --filter '@celestia-project/ui' build
+# Only build ui if it's in the target set
+for KEY in "${ORDERED[@]}"; do
+  if [[ "$KEY" == "ui" ]]; then
+    info "Building @celestia-project/ui..."
+    pnpm --filter '@celestia-project/ui' build
+    break
+  fi
+done
+
+# ── 5. bump versions (if requested) ─────────────────────────
+if [[ -n "$BUMP" ]]; then
+  echo ""
+  info "Bumping ${BOLD}${BUMP}${RESET} version for: ${ORDERED[*]}"
+  for KEY in "${ORDERED[@]}"; do
+    PKG_DIR="${PKG_DIRS[$KEY]}"
+    PKG_NAME=$(node -p "require('./${PKG_DIR}/package.json').name")
+    OLD_VER=$(node -p "require('./${PKG_DIR}/package.json').version")
+
+    # Calculate new version via node semver logic
+    NEW_VER=$(node -e "
+      const [ma, mi, pa] = '${OLD_VER}'.split('.').map(Number);
+      const bumped = { patch: [ma, mi, pa+1], minor: [ma, mi+1, 0], major: [ma+1, 0, 0] }['${BUMP}'];
+      process.stdout.write(bumped.join('.'));
+    ")
+
+    # Write new version into package.json
+    node -e "
+      const fs = require('fs');
+      const p = JSON.parse(fs.readFileSync('${PKG_DIR}/package.json', 'utf-8'));
+      p.version = '${NEW_VER}';
+      fs.writeFileSync('${PKG_DIR}/package.json', JSON.stringify(p, null, 2) + '\n');
+    "
+    success "Bumped ${PKG_NAME}: ${OLD_VER} → ${NEW_VER}"
+  done
+  echo ""
+  warn "Version files updated. Commit them before the next publish:"
+  echo "  git add ${ORDERED[*]/#/packages/}/package.json"
+  echo "  git commit -m \"chore: bump ${BUMP} version\""
+  echo ""
+
+  if [[ -z "$DRY_RUN" ]]; then
+    read -r -p "${YELLOW}${BOLD}[WARN]${RESET}  Continue to publish? [y/N] " CONFIRM
+    [[ "${CONFIRM,,}" != "y" && "${CONFIRM,,}" != "yes" ]] && { info "Aborted."; exit 0; }
+  fi
+fi
 
 # ── 6. publish each package ──────────────────────────────────
 echo ""
-for PKG_DIR in "${PACKAGES[@]}"; do
+PUBLISHED=()
+for KEY in "${ORDERED[@]}"; do
+  PKG_DIR="${PKG_DIRS[$KEY]}"
   PKG_NAME=$(node -p "require('./${PKG_DIR}/package.json').name")
   PKG_VER=$(node -p "require('./${PKG_DIR}/package.json').version")
 
   echo "${BOLD}─────────────────────────────────────────${RESET}"
   info "Publishing ${CYAN}${PKG_NAME}${RESET} @ ${PKG_VER}"
 
-  # Check if this exact version is already published (always query the public registry)
+  # Check if this exact version is already published
   PUBLISHED_VER=$(npm view "${PKG_NAME}" version \
     --registry https://registry.npmjs.org \
     --json 2>/dev/null \
@@ -88,15 +172,21 @@ for PKG_DIR in "${PACKAGES[@]}"; do
     $DRY_RUN
 
   success "Published ${PKG_NAME}@${PKG_VER}"
+  PUBLISHED+=("${PKG_NAME}@${PKG_VER}")
 done
 
+# ── 7. summary ───────────────────────────────────────────────
 echo ""
 echo "${BOLD}─────────────────────────────────────────${RESET}"
 if [[ -n "$DRY_RUN" ]]; then
-  warn "Dry run complete. Run without --dry-run to actually publish."
+  warn "Dry run complete. Remove --dry-run to publish."
 else
-  success "All packages published! 🎉"
-  echo ""
-  echo "  ${CYAN}@celestia-project/ui${RESET}     → https://www.npmjs.com/package/@celestia-project/ui"
-  echo "  ${CYAN}@celestia-project/create${RESET} → https://www.npmjs.com/package/@celestia-project/create"
+  success "Done! 🎉"
+  if [[ ${#PUBLISHED[@]} -gt 0 ]]; then
+    echo ""
+    for PKG in "${PUBLISHED[@]}"; do
+      PKG_PATH="${PKG%@*}"  # strip @version
+      echo "  ${CYAN}${PKG}${RESET} → https://www.npmjs.com/package/${PKG_PATH}"
+    done
+  fi
 fi

@@ -14,7 +14,15 @@
     "remove-feature": "tsx packages/feature-manager/src/cli/index.ts remove",
     "list-features": "tsx packages/feature-manager/src/cli/index.ts list",
     "publish:packages": "bash scripts/publish.sh",
-    "publish:dry-run": "bash scripts/publish.sh --dry-run"
+    "publish:dry-run": "bash scripts/publish.sh --dry-run",
+    "publish:ui": "bash scripts/publish.sh --pkg ui",
+    "publish:cli": "bash scripts/publish.sh --pkg cli",
+    "bump:ui:patch": "bash scripts/publish.sh --pkg ui --bump patch",
+    "bump:ui:minor": "bash scripts/publish.sh --pkg ui --bump minor",
+    "bump:ui:major": "bash scripts/publish.sh --pkg ui --bump major",
+    "bump:cli:patch": "bash scripts/publish.sh --pkg cli --bump patch",
+    "bump:cli:minor": "bash scripts/publish.sh --pkg cli --bump minor",
+    "bump:cli:major": "bash scripts/publish.sh --pkg cli --bump major"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.6",
