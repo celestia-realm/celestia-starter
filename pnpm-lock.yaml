@@ -76,8 +76,8 @@ importers:
   apps/docs:
     dependencies:
       '@celestia-project/ui':
-        specifier: ^0.1.0
-        version: 0.1.0(@date-fns/tz@1.5.0)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@16.13.1)(react@19.2.8)(redux@5.0.1)(typescript@6.0.3)
+        specifier: ^0.2.0
+        version: 0.2.0(@date-fns/tz@1.5.0)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@16.13.1)(react@19.2.8)(redux@5.0.1)(typescript@6.0.3)
       '@phosphor-icons/react':
         specifier: ^2.1.10
         version: 2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -730,6 +730,12 @@ packages:
 
   '@celestia-project/ui@0.1.0':
     resolution: {integrity: sha512-qyaV0Iagz5jOwZ//caMOFw1c1smOcQLDYnXc68XQc1PB/sXdkZeyV6CyclT7esoVfbUd+KKcXsMLOtgixM7P6g==}
+    peerDependencies:
+      react: ^19
+      react-dom: ^19
+
+  '@celestia-project/ui@0.2.0':
+    resolution: {integrity: sha512-e+RU/UsVst7GKoEpQjBQbVssyVBXLzsfSLo+7TYnxFLlwBlYt7fbVxK2lWIUdP3Kdg7uDJ3Evmo9lqJMlfRn5w==}
     peerDependencies:
       react: ^19
       react-dom: ^19
@@ -6641,21 +6647,33 @@ snapshots:
       - supports-color
       - typescript
 
-  '@celestia-project/ui@0.1.0(@date-fns/tz@1.5.0)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@16.13.1)(react@19.2.8)(redux@5.0.1)(typescript@6.0.3)':
+  '@celestia-project/ui@0.2.0(@date-fns/tz@1.5.0)(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@16.13.1)(react@19.2.8)(redux@5.0.1)(typescript@6.0.3)':
     dependencies:
       '@base-ui/react': 1.6.0(@date-fns/tz@1.5.0)(@types/react@19.2.18)(date-fns@4.4.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@codemirror/lang-javascript': 6.2.5
+      '@codemirror/lang-json': 6.0.2
+      '@codemirror/lang-markdown': 6.5.2
+      '@codemirror/language': 6.12.4
+      '@codemirror/state': 6.7.1
+      '@codemirror/view': 6.43.8
+      '@lezer/highlight': 1.2.3
       '@phosphor-icons/react': 2.1.10(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@shadcn/react': 0.2.1(@types/react@19.2.18)(react@19.2.8)
+      '@tanstack/react-table': 8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      '@tauri-apps/plugin-opener': 2.5.4
       class-variance-authority: 0.7.1
       clsx: 2.1.1
       cmdk: 1.1.1(@types/react-dom@19.2.3(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      codemirror: 6.0.2
       date-fns: 4.4.0
       embla-carousel-react: 8.6.0(react@19.2.8)
       input-otp: 1.4.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      monaco-editor: 0.56.0
       next-themes: 0.4.6(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react: 19.2.8
       react-day-picker: 10.0.1(@types/react@19.2.18)(react@19.2.8)
       react-dom: 19.2.8(react@19.2.8)
+      react-hook-form: 7.84.0(react@19.2.8)
       react-resizable-panels: 4.12.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       recharts: 3.8.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react-is@16.13.1)(react@19.2.8)(redux@5.0.1)
       shadcn: 4.16.1(typescript@6.0.3)
@@ -8247,6 +8265,12 @@ snapshots:
       '@tanstack/table-core': 8.21.3
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
+
+  '@tanstack/react-table@8.21.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+    dependencies:
+      '@tanstack/table-core': 8.21.3
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
 
   '@tanstack/table-core@8.21.3': {}
 
@@ -11422,6 +11446,10 @@ snapshots:
   react-hook-form@7.84.0(react@19.2.4):
     dependencies:
       react: 19.2.4
+
+  react-hook-form@7.84.0(react@19.2.8):
+    dependencies:
+      react: 19.2.8
 
   react-is@16.13.1: {}
 

@@ -7,7 +7,6 @@ import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import { source } from '@/lib/source';
 import { baseOptions } from '@/lib/layout.shared';
 import { sidebarComponents } from '@/components/sidebar';
-import '@celestia-project/ui/globals.css';
 import './global.css';
 
 const inter = Inter({
