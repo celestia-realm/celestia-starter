@@ -80,11 +80,17 @@ function PopoverDescription({
   )
 }
 
+function PopoverAnchor({ ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="popover-anchor" {...props} />
+}
+
 export {
   Popover,
+  PopoverAnchor,
   PopoverContent,
   PopoverDescription,
   PopoverHeader,
   PopoverTitle,
   PopoverTrigger,
 }
+
