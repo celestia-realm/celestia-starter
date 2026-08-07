@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type * as Monaco from 'monaco-editor';
 
+
 const globalScope = self as unknown as {
   MonacoEnvironment?: Monaco.Environment;
 };
@@ -21,7 +22,7 @@ function loadMonaco() {
     import('monaco-editor/esm/vs/language/typescript/ts.worker?worker'),
   ]).then(([monaco, editorWorker, cssWorker, htmlWorker, jsonWorker, tsWorker]) => {
     globalScope.MonacoEnvironment ??= {
-      getWorker(_workerId, label) {
+      getWorker(_workerId: string, label: string) {
         switch (label) {
           case 'css':
           case 'scss':
