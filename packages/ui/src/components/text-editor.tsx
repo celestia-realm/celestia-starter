@@ -2,13 +2,22 @@ import { useEffect, useRef } from 'react';
 import { basicSetup } from 'codemirror';
 import { EditorState, Compartment, Prec, Range } from '@codemirror/state';
 import { EditorView, keymap, ViewPlugin, Decoration, DecorationSet } from '@codemirror/view';
+import type { ViewUpdate } from '@codemirror/view';
 import { HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 import { tags as t } from '@lezer/highlight';
 import type { Extension } from '@codemirror/state';
 import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
 import { markdown } from '@codemirror/lang-markdown';
-import { openUrl } from '@tauri-apps/plugin-opener';
+
+async function openExternalUrl(url: string) {
+  try {
+    const { openUrl } = await import('@tauri-apps/plugin-opener');
+    await openUrl(url);
+  } catch {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Theme definitions
@@ -116,14 +125,14 @@ const linkPlugin = ViewPlugin.fromClass(
     constructor(view: EditorView) {
       this.decorations = buildLinkDecorations(view);
     }
-    update(update: any) {
+    update(update: ViewUpdate) {
       if (update.docChanged || update.viewportChanged) {
         this.decorations = buildLinkDecorations(update.view);
       }
     }
   },
   {
-    decorations: (v) => v.decorations,
+    decorations: (v: { decorations: DecorationSet }) => v.decorations,
   }
 );
 
@@ -185,12 +194,13 @@ export function TextEditor({
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const langMap: Record<string, () => Extension> = {
-      javascript,
-      json,
+    const langMap: Record<'javascript' | 'json' | 'markdown', () => Extension> = {
+      javascript: () => javascript(),
+      json: () => json(),
       markdown: () => markdown(),
     };
-    const langExt = (langMap[language] ?? langMap.javascript)();
+    const getLang = langMap[language] ?? (() => javascript());
+    const langExt = getLang();
 
     const view = new EditorView({
       parent: containerRef.current,
@@ -225,7 +235,7 @@ export function TextEditor({
 
           optionsCompartment.current.of(buildOptionsExtensions(options)),
           theme === 'dark' ? themeDark : themeLight,
-          EditorView.updateListener.of((update) => {
+          EditorView.updateListener.of((update: ViewUpdate) => {
             if (update.docChanged && !isExternalUpdate.current) {
               onChangeRef.current?.(update.state.doc.toString());
             }
@@ -234,7 +244,7 @@ export function TextEditor({
           ...(detectLinks ? [
             linkPlugin,
             EditorView.domEventHandlers({
-              click: (event, _view) => {
+              click: (event: MouseEvent, _view: EditorView) => {
                 const target = event.target as HTMLElement;
                 const linkEl = target.closest('.cm-link');
                 if (linkEl) {
@@ -242,9 +252,7 @@ export function TextEditor({
                   if (url) {
                     event.preventDefault();
                     event.stopPropagation();
-                    openUrl(url).catch(() => {
-                      window.open(url, '_blank', 'noopener,noreferrer');
-                    });
+                    openExternalUrl(url);
                   }
                 }
               }
