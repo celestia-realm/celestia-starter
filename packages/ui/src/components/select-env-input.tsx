@@ -252,7 +252,7 @@ export function ColorizedUrlInput({
 
   return (
     <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-      <PopoverAnchor render={(props) => (
+      <PopoverAnchor>
         <div
           ref={editableRef}
           contentEditable
@@ -271,9 +271,8 @@ export function ColorizedUrlInput({
             'empty:before:content-[attr(data-placeholder)] empty:before:text-muted-foreground',
             className,
           )}
-          {...props}
         />
-      )} />
+      </PopoverAnchor>
       <PopoverContent
         className="w-56 p-0"
         align="start"
